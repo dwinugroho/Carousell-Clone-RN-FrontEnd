@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+
+
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
+
+
 import AppStack from './src/screen/RootNavigator'
 export default class App extends Component {
   render() {
     return (
-        <AppStack />
+      <AppStack/>
       // <View style={styles.container}>
       //   <Text style={styles.welcome}>Welcome to React!</Text>
       //   <Text style={styles.instructions}>To get started, edit App.js</Text>
       //   <Text style={styles.instructions}>{instructions}</Text>
       // </View>
+      
     );
   }
 }
@@ -19,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
   welcome: {
     fontSize: 20,
