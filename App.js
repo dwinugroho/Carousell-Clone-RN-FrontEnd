@@ -16,7 +16,7 @@ import Header from './src/components/header'
 
 
 import AppStack from './src/screen/RootNavigator'
-export default class App extends Component{
+export default class App extends Component {
   render() {
     return (
 
@@ -24,8 +24,7 @@ export default class App extends Component{
           <StatusBar backgroundColor="#9e2626" barStyle="light-content" />
           <Header />
           <AppStack/>
-      </React.Fragment>
-      
+      </React.Fragment>    
     );
   }
 }
