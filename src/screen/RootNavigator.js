@@ -13,8 +13,16 @@ const Material = createMaterialTopTabNavigator({
     tabBarOptions : {
         showIcon : true,
         activeTintColor : 'white',
+        labelStyle: {
+            fontSize: 12,
+            fontWeight: 'bold'
+        },
         style : {
-            backgroundColor: 'red',
+            backgroundColor: '#c22727',
+            paddingTop: -100,
+        },
+        indicatorStyle: {
+            backgroundColor: 'white',
         }
     }
 })
