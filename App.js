@@ -24,7 +24,7 @@ export default class App extends Component {
 
       <React.Fragment>
           <StatusBar backgroundColor="#9e2626" barStyle="light-content" />
-          <Header />
+          <Header navigation={this.props.navigation}/>
           <AppStack/>
       </React.Fragment>    
     );

@@ -5,6 +5,8 @@ import User from './user';
 import Explore from './explore';
 import Setting from './setting';
 import Profil from './profil';
+import Chart from './chart';
+import ChangePassword from './changePassword';
 
 const Material = createMaterialTopTabNavigator({
     explore : {screen :Explore},
@@ -32,7 +34,9 @@ const Material = createMaterialTopTabNavigator({
 const AppStack = createStackNavigator({
     explore : {screen : Material},
     setting : {screen :Setting},
-    profil : {screen :Profil}
+    profil : {screen :Profil},
+    chart : {screen :Chart},
+    changePassword : {screen : ChangePassword}
 },{
     headerMode: 'none',
     navigationOptions: {
