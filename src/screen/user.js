@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image ,Dimensions} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
 import Icon from 'react-native-vector-icons/dist/AntDesign'
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import Iklan from './Tab/iklan';
 import Review from './Tab/review';
 import About from './Tab/about';
 
 class User extends Component {
+  state = {
+    index: 0,
+    routes: [
+      { key: 'Iklan', title: 'Iklan' },
+      { key: 'Review', title: 'Review' },
+      { key: 'About', title: 'About' },
+    ],
+ };
+
   render() {
     return (
-      <View style={{flex :1,backgroundColor: '#FFFFFF',}}>
+      <React.Fragment style={{flex :1,backgroundColor: '#FFFFFF',}}>
           <Image style={{height:90,width:'100%'}} source={require('../assets/2.jpg')}/>
         <View style={{ flexDirection: 'row',marginTop: -40,}}>
           <View style={{ flex: 3 ,paddingLeft: 10,}}>
@@ -40,21 +49,34 @@ class User extends Component {
           <Text style={{fontSize : 13}}>sudah verivikasi</Text>
           <Text style={{fontSize :13}}>tergabung hari ini</Text>
         </View>
-        <Container>
-        <Tabs style={{backgroundColor: '#FFFFFF',}}>
-          <Tab heading="iklan">
-           <Iklan/>
-          </Tab>
-          <Tab heading="review">
-            <Review/>
-          </Tab>
-          <Tab heading="about">
-            <About/>
-          </Tab>
-        </Tabs>
-      </Container>
-      </View>
-    );
-  }
+				<TabView
+			        navigationState={this.state}
+			        labelStyle={{backgroundColor: 'blue'}}
+			        renderScene={SceneMap({
+			          Iklan: Iklan,
+			          Review: Review,
+			          About :About,
+			        })}
+			        onIndexChange={index => this.setState({ index })}
+			        initialLayout={{ width: Dimensions.get('window').width }}
+			        renderTabBar={props =>
+	                    <TabBar
+	                        {...props}
+	                        indicatorStyle={{backgroundColor: '#fc1717'}}
+                          style={styles.tabNav}
+                          labelStyle={{color :'#747678'}}
+	                    />
+	                }
+				    />
+			</React.Fragment>
+		)
+	}
 }
-export default withNavigation(User)
+
+const styles = StyleSheet.create({
+    tabNav: {
+      backgroundColor: '#FFFFFF',
+      color :'black'
+    },
+})
+export default User

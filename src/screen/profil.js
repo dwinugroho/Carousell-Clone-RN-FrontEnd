@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView,StyleSheet, Text, View, TextInput ,Button} from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-
+import HeaderBack from '../components/headerBack'
 export default class Profil extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +24,7 @@ export default class Profil extends Component {
     render() {
         return (
             <ScrollView>
+                <HeaderBack title="change profil" navigation={this.props.navigation}/>
                 <View style={{ paddingTop: 20, marginHorizontal: 17 }}>
                     <Text style={{ fontSize: 14, color: '#818f99' }}>general profile</Text>
                 </View>

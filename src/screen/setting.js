@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Text } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import HeaderBack from '../components/headerBack'
 export default class ListDividerExample extends Component {
   render() {
     return (
       <Container>
+        <HeaderBack title="setting" navigation={this.props.navigation}/>
         <Content>
           <List>
             <ListItem itemDivider>
