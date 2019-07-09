@@ -6,18 +6,20 @@ import {
 	TextInput,
 	Image
 } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/AntDesign';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default class Header extends Component {
-
-
 	render() {
-		return(
+		return (
 			<View style={styles.parentView}>
 				<TextInput style={styles.search} placeholder="Cari di Corosell" />
-				<Image style={styles.searchIcon} source={{uri: 'https://img.icons8.com/material-outlined/96/000000/search.png'}} />
-				<Image style={styles.wishlist} source={{uri: 'https://img.icons8.com/material-outlined/96/000000/filled-like.png'}} />
-				<Image style={styles.wishlist} source={{uri: 'https://img.icons8.com/material-outlined/96/000000/shopping-cart.png'}} />
+				<Icon style={styles.searchIcon} name='search1' size={26} color={'#080808'} />
+				<Icon style={styles.wishlist} name='hearto' size={26} color={'#f5f6f7'} />
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('chart')}>
+				<Icon style={styles.wishlist} name='shoppingcart' size={26} color={'#f5f6f7'} />
+				</TouchableOpacity>
 			</View>
 		)
 	}
@@ -41,8 +43,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	searchIcon: {
-		width: 20,
-		height: 20,
 		position: 'absolute',
 		top: 17,
 		left: 22,

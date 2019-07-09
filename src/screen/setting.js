@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Text } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
 export default class ListDividerExample extends Component {
   render() {
     return (
@@ -16,7 +17,7 @@ export default class ListDividerExample extends Component {
                 </TouchableOpacity>
             </ListItem>
             <ListItem>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('changePassword')}>
               <Text>change password</Text>
                 </TouchableOpacity>
             </ListItem>
