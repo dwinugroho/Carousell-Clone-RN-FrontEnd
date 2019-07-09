@@ -3,6 +3,8 @@ import Activity from './activity';
 import Group from './group';
 import User from './user';
 import Explore from './explore';
+import Setting from './setting';
+import Profil from './profil';
 
 const Material = createMaterialTopTabNavigator({
     explore : {screen :Explore},
@@ -28,9 +30,9 @@ const Material = createMaterialTopTabNavigator({
 })
 
 const AppStack = createStackNavigator({
-    explore : {
-        screen : Material
-    }
+    explore : {screen : Material},
+    setting : {screen :Setting},
+    profil : {screen :Profil}
 },{
     headerMode: 'none',
     navigationOptions: {
