@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { TouchableOpacity, Platform, StyleSheet, Text, View, Image,ScrollView  } from 'react-native';
 import Card from '../components/Card';
 import Slider from '../components/slider';
 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
+import Mycarousel from '../components/carousel';
 
 
 class Explore extends Component {
-  render() {
-    return (
-      <View style={{position:'relative'}}>
-        <Card />
-        <TouchableOpacity style={styles.actionButton}>
-        	<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
-        	<Text style={{fontSize: 20, color: 'white'}}>JUAL</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+	render() {
+		return (
+			<ScrollView style={{ position: 'relative' }}>
+				<View>
+					<Mycarousel />
+				</View>
+				<View style={{justifyContent :'space-between',flexDirection: 'row',paddingHorizontal: 17,padding :15,alignItems: 'center',}}>
+					<Text style={{fontSize :17,color :'black'}}>Explore Corrausel</Text>
+					<TouchableOpacity style={{padding:8}}>
+					<Text style={{fontSize :15,color :'#c2baba'}}>view more  ></Text>
+					</TouchableOpacity>
+				</View>
+				<Card />
+				<TouchableOpacity style={styles.actionButton}>
+					<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
+					<Text style={{ fontSize: 20, color: 'white' }}>JUAL</Text>
+				</TouchableOpacity>
+			</ScrollView>
+		);
+	}
 }
 export default Explore
 
@@ -34,8 +44,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		elevation: 7,
 	},
-  plusIcon:{
-    top: 1,
-    marginRight: 5,
-  }
+	plusIcon: {
+		top: 1,
+		marginRight: 5,
+	}
 })
