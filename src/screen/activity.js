@@ -1,21 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
-
-export default class Activity extends Component{
+import React, { Component } from 'react';
+import { Container, Button, Content, Form, Item, Input ,Text} from 'native-base';
+export default class Activity extends Component {
   render() {
     return (
-      <View>
-        <Text>activity</Text>
-        </View>
+      <Container>
+        <Content>
+          <Form>
+            <Item>
+              <Input placeholder="Username" />
+            </Item>
+            <Item last>
+              <Input placeholder="Password" />
+            </Item>
+          </Form>
+          <Button full info>
+            <Text>Primary</Text>
+          </Button>
+        </Content>
+      </Container>
     );
   }
 }
