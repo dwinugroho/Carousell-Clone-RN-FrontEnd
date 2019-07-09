@@ -6,7 +6,8 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  StatusBar
+  StatusBar,
+  YellowBox
 } from 'react-native';
 
 // Components
@@ -14,6 +15,7 @@ import {
 import Header from './src/components/header'
 
 
+YellowBox.ignoreWarnings(['ViewPagerAndroid']);
 
 import AppStack from './src/screen/RootNavigator'
 export default class App extends Component {
