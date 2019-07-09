@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     imageWrap: {
         width: '80%',
         height: 200,
-        backgroundColor: 'blue',
         margin: 20,
     }
 })

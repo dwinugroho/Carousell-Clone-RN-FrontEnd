@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { withNavigation } from 'react-navigation';
+
 
 class User extends Component {
   render() {
@@ -33,4 +35,4 @@ class User extends Component {
     );
   }
 }
-export default User
+export default withNavigation(User)

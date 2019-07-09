@@ -1,3 +1,5 @@
+import React, { Component } from 'react'
+
 import {createAppContainer,createStackNavigator,createMaterialTopTabNavigator} from 'react-navigation'
 import Activity from './activity';
 import Group from './group';
@@ -6,33 +8,15 @@ import Explore from './explore';
 import Setting from './setting';
 import Profil from './profil';
 
-const Material = createMaterialTopTabNavigator({
-    explore : {screen :Explore},
-    activity : {screen : Activity},
-    Group : {screen :Group},
-    user : {screen :User}
-},{
-    tabBarOptions : {
-        showIcon : true,
-        activeTintColor : 'white',
-        labelStyle: {
-            fontSize: 12,
-            fontWeight: 'bold'
-        },
-        style : {
-            backgroundColor: '#c22727',
-            paddingTop: -100,
-        },
-        indicatorStyle: {
-            backgroundColor: 'white',
-        }
-    }
-})
+// Components
+import Home from './Home'
+
+
 
 const AppStack = createStackNavigator({
-    explore : {screen : Material},
+    Home : {screen : Home},
     setting : {screen :Setting},
-    profil : {screen :Profil}
+    profil : {screen :Profil},
 },{
     headerMode: 'none',
     navigationOptions: {
@@ -40,4 +24,18 @@ const AppStack = createStackNavigator({
     }
 })
 
-export default createAppContainer(AppStack)
+const AppContainer = createAppContainer(AppStack)
+
+
+class StackNavigator extends Component {
+    render() {
+        return(
+            <React.Fragment>
+                <AppContainer />
+            </React.Fragment>
+        )
+    }
+}
+
+export default StackNavigator;
+

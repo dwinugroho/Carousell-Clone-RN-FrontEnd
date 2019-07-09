@@ -10,9 +10,7 @@ import {
   YellowBox
 } from 'react-native';
 
-// Components
 
-import Header from './src/components/header'
 
 
 YellowBox.ignoreWarnings(['ViewPagerAndroid']);
@@ -21,10 +19,8 @@ import AppStack from './src/screen/RootNavigator'
 export default class App extends Component {
   render() {
     return (
-
       <React.Fragment>
           <StatusBar backgroundColor="#9e2626" barStyle="light-content" />
-          <Header />
           <AppStack/>
       </React.Fragment>    
     );
