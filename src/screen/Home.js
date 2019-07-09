@@ -38,7 +38,7 @@ export default class Home extends Component {
 			          User: User,
 			        })}
 			        onIndexChange={index => this.setState({ index })}
-			        initialLayout={{ width: Dimensions.get('window').width }}
+			        initialLayout={{ width: Dimensions.get('window').width, height: 100 }}
 			        renderTabBar={props =>
 	                    <TabBar
 	                        {...props}
