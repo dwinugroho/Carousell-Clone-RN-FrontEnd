@@ -13,7 +13,7 @@ class Explore extends Component {
         		style={{width: 20, height: 20, top: 1, marginRight: 5}} 
         		source={{uri: 'https://img.icons8.com/pastel-glyph/64/000000/plus.png'}}
         	/>
-        	<Text style={{fontSize: 20}}>JUAL</Text>
+        	<Text style={{fontSize: 20, color: 'white'}}>JUAL</Text>
         </TouchableOpacity>
       </View>
     );
