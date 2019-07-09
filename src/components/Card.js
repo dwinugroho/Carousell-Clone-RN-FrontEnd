@@ -58,13 +58,6 @@ const data = [
         'harga': 'RP.130,6700',
         'deskripsi': 'baju murah dahstya'
     },
-    {
-        'key': '9',
-        'name': 'namedd',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
-        'harga': 'RP.130,6700',
-        'deskripsi': 'baju murah dahstya'
-    },
 ]
 
 class FlatListItem extends Component {
@@ -91,7 +84,8 @@ const styles = StyleSheet.create({
         borderColor: '#F5F5F5',
     },
     productImage: {
-        flex: 1,
+        width: '100%',
+        height: '100%',
     },
     imageWrap: {
         width: '80%',
