@@ -28,18 +28,5 @@ const AppStack = createStackNavigator({
     }
 })
 
-const AppContainer = createAppContainer(AppStack)
-
-
-class StackNavigator extends Component {
-    render() {
-        return(
-            <React.Fragment>
-                <AppContainer />
-            </React.Fragment>
-        )
-    }
-}
-
-export default StackNavigator;
+export default AppContainer = createAppContainer(AppStack)
 

@@ -44,6 +44,7 @@ export default class Home extends Component {
 	                        {...props}
 	                        indicatorStyle={{backgroundColor: 'white'}}
 	                        style={styles.tabNav}
+	                        labelStyle={styles.labelStyle}
 	                    />
 	                }
 				    />
@@ -56,4 +57,7 @@ const styles = StyleSheet.create({
     tabNav: {
     	backgroundColor: '#c22727'
     },
+    labelStyle: {
+    	fontSize: 12
+    }
 })
