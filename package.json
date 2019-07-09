@@ -11,7 +11,12 @@
     "react": "16.8.3",
     "react-native": "0.59.9",
     "react-native-gesture-handler": "^1.3.0",
+<<<<<<< HEAD
     "react-native-reanimated": "^1.1.0",
+=======
+    "react-native-modal-datetime-picker": "^7.5.0",
+    "react-native-vector-icons": "^6.6.0",
+>>>>>>> f739f17e0b85257a91b33c9a854cfcd299472369
     "react-navigation": "^3.11.0"
   },
   "devDependencies": {

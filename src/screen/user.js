@@ -4,6 +4,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { withNavigation } from 'react-navigation';
 
+import Icon from 'react-native-vector-icons/dist/AntDesign'
+import { Container, Header, Content, Tab, Tabs } from 'native-base';
+import Iklan from './Tab/iklan';
+import Review from './Tab/review';
+import About from './Tab/about';
 
 class User extends Component {
   render() {
@@ -16,10 +21,14 @@ class User extends Component {
           </View>
           <View style={{ flex: 3, justifyContent: 'flex-end' ,paddingLeft: 10}}>
             <View style={{ flexDirection: 'row' ,justifyContent:'space-around'}}>
-              <Image style={{height :20,width :20}} source={require('../assets/home.png')}/>
-              <Image style={{height :20,width :20}} source={require('../assets/gopay.png')}/>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('setting')} >
-              <Image style={{height :20,width :20}} source={require('../assets/help.png')}/>
+              <TouchableOpacity  style={{padding :7}}>
+              <Icon name='qrcode' size={25} color={'#7fa9fa'}></Icon>
+              </TouchableOpacity>
+              <TouchableOpacity  style={{padding :7}}>
+              <Icon name='sharealt' size={25} color={'#7fa9fa'}></Icon>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('setting')} style={{padding :7}}>
+              <Icon name='setting' size={25}  color={'#7fa9fa'}></Icon>
               </TouchableOpacity>
             </View>
           </View>
@@ -31,6 +40,19 @@ class User extends Component {
           <Text style={{fontSize : 13}}>sudah verivikasi</Text>
           <Text style={{fontSize :13}}>tergabung hari ini</Text>
         </View>
+        <Container>
+        <Tabs style={{backgroundColor: '#FFFFFF',}}>
+          <Tab heading="iklan">
+           <Iklan/>
+          </Tab>
+          <Tab heading="review">
+            <Review/>
+          </Tab>
+          <Tab heading="about">
+            <About/>
+          </Tab>
+        </Tabs>
+      </Container>
       </View>
     );
   }

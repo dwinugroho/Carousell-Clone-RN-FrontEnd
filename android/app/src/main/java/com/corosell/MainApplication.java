@@ -3,7 +3,11 @@ package com.corosell;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+<<<<<<< HEAD
 import com.swmansion.reanimated.ReanimatedPackage;
+=======
+import com.oblador.vectoricons.VectorIconsPackage;
+>>>>>>> f739f17e0b85257a91b33c9a854cfcd299472369
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,7 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+<<<<<<< HEAD
             new ReanimatedPackage(),
+=======
+            new VectorIconsPackage(),
+>>>>>>> f739f17e0b85257a91b33c9a854cfcd299472369
             new RNGestureHandlerPackage()
       );
     }

@@ -13,6 +13,7 @@ import Header from '../components/header'
 
 export default class Home extends Component {
 
+	// State
 	state = {
 	    index: 0,
 	    routes: [

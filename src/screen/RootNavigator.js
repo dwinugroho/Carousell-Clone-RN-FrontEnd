@@ -7,6 +7,8 @@ import User from './user';
 import Explore from './explore';
 import Setting from './setting';
 import Profil from './profil';
+import Chart from './chart';
+import ChangePassword from './changePassword';
 
 // Components
 import Home from './Home'
@@ -17,6 +19,8 @@ const AppStack = createStackNavigator({
     Home : {screen : Home},
     setting : {screen :Setting},
     profil : {screen :Profil},
+    chart : {screen :Chart},
+    changePassword : {screen : ChangePassword}
 },{
     headerMode: 'none',
     navigationOptions: {
