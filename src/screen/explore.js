@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Platform, StyleSheet, Text, View, Image } from 'react-native';
 import Card from '../components/Card';
+import Slider from '../components/slider';
 
 
 class Explore extends Component {
