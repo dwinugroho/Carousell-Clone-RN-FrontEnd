@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import HeaderBack from '../components/headerBack'
-export default class Chart extends Component {
+export default class Wishlist extends Component {
     render() {
         return (
             <View>
-                <HeaderBack title="chart" navigation={this.props.navigation}/>
-                <Text> Chart</Text>
+                 <HeaderBack title="wishlist" navigation={this.props.navigation}/>
+                <Text> textInComponent </Text>
             </View>
         )
     }

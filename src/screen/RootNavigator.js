@@ -12,6 +12,7 @@ import ChangePassword from './changePassword';
 
 // Components
 import Home from './Home'
+import Wishlist from './wishlist';
 
 
 
@@ -20,7 +21,8 @@ const AppStack = createStackNavigator({
     setting : {screen :Setting},
     profil : {screen :Profil},
     chart : {screen :Chart},
-    changePassword : {screen : ChangePassword}
+    changePassword : {screen : ChangePassword},
+    wishlist : {screen :Wishlist}
 },{
     headerMode: 'none',
     navigationOptions: {

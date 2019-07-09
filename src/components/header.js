@@ -15,11 +15,17 @@ export default class Header extends Component {
 		return (
 			<View style={styles.parentView}>
 				<TextInput style={styles.search} placeholder="Cari di Corosell" />
+                      
 				<Icon style={styles.searchIcon} name='search1' size={18} color={'#080808'} />
-				<Icon style={styles.wishlist} name='hearto' size={23} color={'#f5f6f7'} />
-				<TouchableOpacity onPress={() => this.props.navigation.navigate('chart')}>
-				<Icon style={styles.wishlist} name='shoppingcart' size={23} color={'#f5f6f7'} />
+      
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('wishlist')}>
+					<Icon style={styles.wishlist} name='hearto' size={26} color={'#f5f6f7'} />      
 				</TouchableOpacity>
+
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('chart')}>
+				  <Icon style={styles.wishlist} name='shoppingcart' size={23} color={'#f5f6f7'} />
+				</TouchableOpacity>
+
 			</View>
 		)
 	}
