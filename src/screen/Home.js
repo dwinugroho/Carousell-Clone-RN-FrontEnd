@@ -38,12 +38,13 @@ export default class Home extends Component {
 			          User: User,
 			        })}
 			        onIndexChange={index => this.setState({ index })}
-			        initialLayout={{ width: Dimensions.get('window').width }}
+			        initialLayout={{ width: Dimensions.get('window').width, height: 100 }}
 			        renderTabBar={props =>
 	                    <TabBar
 	                        {...props}
 	                        indicatorStyle={{backgroundColor: 'white'}}
 	                        style={styles.tabNav}
+	                        labelStyle={styles.labelStyle}
 	                    />
 	                }
 				    />
@@ -56,4 +57,7 @@ const styles = StyleSheet.create({
     tabNav: {
     	backgroundColor: '#c22727'
     },
+    labelStyle: {
+    	fontSize: 12
+    }
 })

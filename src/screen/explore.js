@@ -3,6 +3,8 @@ import { TouchableOpacity, Platform, StyleSheet, Text, View, Image } from 'react
 import Card from '../components/Card';
 import Slider from '../components/slider';
 
+import Icon from 'react-native-vector-icons/dist/AntDesign';
+
 
 class Explore extends Component {
   render() {
@@ -10,10 +12,7 @@ class Explore extends Component {
       <View style={{position:'relative'}}>
         <Card />
         <TouchableOpacity style={styles.actionButton}>
-        	<Image
-        		style={{width: 20, height: 20, top: 1, marginRight: 5}} 
-        		source={{uri: 'https://img.icons8.com/pastel-glyph/64/000000/plus.png'}}
-        	/>
+        	<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
         	<Text style={{fontSize: 20, color: 'white'}}>JUAL</Text>
         </TouchableOpacity>
       </View>
@@ -34,5 +33,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		justifyContent: 'center',
 		elevation: 7,
-	}
+	},
+  plusIcon:{
+    top: 1,
+    marginRight: 5,
+  }
 })
