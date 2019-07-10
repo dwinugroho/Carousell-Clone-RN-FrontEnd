@@ -3719,6 +3719,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.pad@^4.1.0:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/lodash.pad/-/lodash.pad-4.5.1.tgz#4330949a833a7c8da22cc20f6a26c4d59debba70"
@@ -5104,6 +5109,14 @@ react-native-keyboard-aware-scroll-view@0.8.0:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-looped-carousel-improved@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-looped-carousel-improved/-/react-native-looped-carousel-improved-1.0.2.tgz#3cc0386e4bc96b2f16997d8bf1e61c5be4e3131f"
+  integrity sha512-ctFU9rv9Hy4SikhOuY/0s1X8gXI8JpAa/J0l7/VXdEX6NrnNXBDCsl4++lJIDLK0ckT+ZE4lDVn1pjaXnqb2bg==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.5.10"
+
 react-native-modal-datetime-picker@^7.5.0:
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-7.5.0.tgz#415f02e29eedf283035867ae65d2e609af738abf"
@@ -5138,6 +5151,11 @@ react-native-safe-area-view@^0.14.1:
   integrity sha512-tOxHGQUN83MTmQB4ghoQkibqOdGiX4JQEmeyEv96MKWO/x8T2PJv84ECUos9hD3blPRQwVwSpAid1PPPhrVEaw==
   dependencies:
     debounce "^1.2.0"
+
+react-native-smart-carousel@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-smart-carousel/-/react-native-smart-carousel-1.1.0.tgz#228ee559204b33639c44219e40baf8784f66587b"
+  integrity sha1-Io7lWSBLM2OcRCGeQLr4eE9mWHs=
 
 react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   version "1.4.1"

@@ -22,7 +22,7 @@ class Explore extends Component {
 					<Text style={{fontSize :15,color :'#c2baba'}}>view more  ></Text>
 					</TouchableOpacity>
 				</View>
-				<Card />
+				<Card navigation={this.props.navigation} />
 				<TouchableOpacity style={styles.actionButton}>
 					<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
 					<Text style={{ fontSize: 20, color: 'white' }}>JUAL</Text>

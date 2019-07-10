@@ -106,12 +106,13 @@ export default class Card extends Component {
     render() {
         return (
             <View>
+                
                 <FlatList
                     data={data}
                     numColumns={2}
                     renderItem={({ item, index }) => {
                         return (
-                            <FlatListItem navigation={this.props.navigation} item={item} index={index} />
+                            <FlatListItem navigation={this.props.navigation} navigation={this.props.navigation} item={item} index={index} />
                         )
                     }}
                 />
