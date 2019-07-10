@@ -3,8 +3,6 @@ import { Platform, StyleSheet, Text, View, Image ,Dimensions} from 'react-native
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-// import { withNavigation } from 'react-navigation';
-
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 import Iklan from './Tab/iklan';
 import Review from './Tab/review';
@@ -59,7 +57,7 @@ class User extends Component {
 			          About :About,
 			        })}
 			        onIndexChange={index => this.setState({ index })}
-			        initialLayout={{ width: Dimensions.get('window').width }}
+			        initialLayout={{ width: Dimensions.get('window').width, height: 100 }}
 			        renderTabBar={props =>
 	                    <TabBar
 	                        {...props}
@@ -80,4 +78,5 @@ const styles = StyleSheet.create({
       color :'black'
     },
 })
+
 export default withNavigation(User)
