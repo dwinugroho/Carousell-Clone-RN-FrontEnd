@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 // Action
 import { getProduct } from '../public/action/product'
@@ -48,8 +49,8 @@ class FlatListItem extends Component {
                             source={{uri: 'https://cdn.dribbble.com/users/1044993/screenshots/5848337/penguin_dribbble.png'}} 
                         />
                         <View>
-                            <Text style={{fontWeight: 'bold', color: 'black', fontSize: 12}}>PixellPie</Text>
-                            <Text style={{color: 'grey', fontSize: 10}}>3 menit lalu</Text>
+                            <Text style={{fontWeight: 'bold', color: 'black', fontSize: 12}}>{this.props.item.username}</Text>
+                            <Text style={{color: 'grey', fontSize: 10}}>{moment(this.props.item.date_created).format('DD MMMM')}</Text>
                         </View>
                     </View>
 
@@ -62,6 +63,7 @@ class FlatListItem extends Component {
                     </View>
                     <Text style={styles.title}>{this.props.item.product_name}</Text>
                     <Text style={styles.price}>Rp {this.state.price}</Text>
+                    <Text numberOfLines={2} style={{fontSize: 12}}>{this.props.item.description}</Text>
                     
                 </View>
             </TouchableOpacity>
