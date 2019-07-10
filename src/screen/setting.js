@@ -53,12 +53,11 @@ export default class ListDividerExample extends Component {
               <Text>application policy</Text>
                 </TouchableOpacity>
             </ListItem>
+            <TouchableOpacity onPress ={() => this.props.navigation.navigate('homeAuth')}>
             <ListItem itemDivider>
-              <Text></Text>
-            </ListItem>
-            <ListItem>
               <Text style={{color :'red'}}>keluar</Text>
-            </ListItem>  
+              </ListItem>  
+            </TouchableOpacity>
           </List>
         </Content>
       </Container>
