@@ -33,8 +33,16 @@ export default class DetailProduct extends Component {
 		      Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0,
 		    ),
 		    refreshing: false,
+		    image: null,
 	    };
 	}
+
+    componentWillMount() {
+        const image = JSON.parse(this.props.navigation.state.params.image)
+        this.setState({
+            image: image
+        })
+    }
 
 	_renderScrollViewContent() {
 	    const data = Array.from({ length: 30 });
@@ -146,7 +154,7 @@ export default class DetailProduct extends Component {
 				                transform: [{ translateY: imageTranslate }],
 				              },
 				            ]}
-				            source={{uri: this.props.navigation.state.params.image}}
+				            source={{uri: this.state.image[0]}}
 				        />
 
 		        	</TouchableWithoutFeedback>
@@ -159,7 +167,7 @@ export default class DetailProduct extends Component {
 				            },
 		        		]}>
 		        		<Entypo name='images' size={15} color={'#f5f6f7'} />
-		        		<Text style={{color: 'white', marginLeft: 10}}>5 Foto</Text>
+		        		<Text style={{color: 'white', marginLeft: 10}}>{this.state.image.length} Foto</Text>
 		        	</Animated.View>
 		          	
 		        </Animated.View>

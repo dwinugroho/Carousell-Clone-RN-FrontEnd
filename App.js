@@ -19,7 +19,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-          {/* <StatusBar backgroundColor="#9e2626" barStyle="light-content" /> */}
+          <StatusBar backgroundColor="#9e2626" barStyle="light-content" />
           <AppStack/>  
       </Provider>
     );
