@@ -21,7 +21,7 @@ class User extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <View style={{flex :1,backgroundColor: '#FFFFFF',}}>
           <Image style={{height:90,width:'100%'}} source={require('../assets/2.jpg')}/>
         <View style={{ flexDirection: 'row',marginTop: -40,}}>
           <View style={{ flex: 3 ,paddingLeft: 10,}}>
@@ -67,7 +67,7 @@ class User extends Component {
 	                    />
 	                }
 				    />
-			</React.Fragment>
+			</View>
 		)
 	}
 }
