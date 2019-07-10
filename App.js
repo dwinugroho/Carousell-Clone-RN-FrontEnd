@@ -1,5 +1,3 @@
-
-
 import React, {Component} from 'react';
 import {
   Platform, 
@@ -10,7 +8,8 @@ import {
   YellowBox
 } from 'react-native';
 
-
+import {Provider} from 'react-redux' 
+import store from './src/public/store'
 
 
 YellowBox.ignoreWarnings(['ViewPagerAndroid']);
@@ -19,10 +18,10 @@ import AppStack from './src/screen/RootNavigator'
 export default class App extends Component {
   render() {
     return (
-      <React.Fragment>
-          <StatusBar backgroundColor="#9e2626" barStyle="light-content" />
-          <AppStack/>
-      </React.Fragment>    
+      <Provider store={store}>
+          {/* <StatusBar backgroundColor="#9e2626" barStyle="light-content" /> */}
+          <AppStack/>  
+      </Provider>
     );
   }
 }
