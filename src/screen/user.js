@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/dist/AntDesign'
 import Iklan from './Tab/iklan';
 import Review from './Tab/review';
 import About from './Tab/about';
+import { withNavigation } from 'react-navigation';
 
 class User extends Component {
   state = {

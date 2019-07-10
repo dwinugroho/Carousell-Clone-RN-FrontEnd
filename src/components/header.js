@@ -18,7 +18,7 @@ export default class Header extends Component {
                       
 					<Icon style={styles.searchIcon} name='search1' size={18} color={'#080808'} />
       
-        		<TouchableOpacity onPress={() => this.props.navigation.navigate('wishlist')}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('wishlist')}>
 					<Icon style={styles.wishlist} name='hearto' size={23} color={'#f5f6f7'} />      
 				</TouchableOpacity>
 
