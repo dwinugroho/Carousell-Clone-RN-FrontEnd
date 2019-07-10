@@ -6,6 +6,8 @@ import Slider from '../components/slider';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 import Mycarousel from '../components/carousel';
 
+import { withNavigation } from 'react-navigation';
+
 
 class Explore extends Component {
 	render() {
@@ -29,7 +31,9 @@ class Explore extends Component {
 		);
 	}
 }
-export default Explore
+
+
+export default withNavigation(Explore)
 
 const styles = StyleSheet.create({
 	actionButton: {
