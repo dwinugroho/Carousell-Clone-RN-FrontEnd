@@ -1,66 +1,39 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet, Button } from 'react-native'
+import { 
+    Text, 
+    View, 
+    FlatList, 
+    TouchableOpacity, 
+    Image, 
+    StyleSheet, 
+    Button 
+} from 'react-native'
 
-const data = [
-    {
-        'key': '1',
-        'name': 'name',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
-        'harga': 'RP.130,0000',
-        'deskripsi': 'baju murah'
-    },
-    {
-        'key': '2',
-        'name': 'nama 2',
-        'image': 'https://static1.fashionbeans.com/wp-content/uploads/2018/09/streetwear-best-top-3.jpg',
-        'harga': '134,0000',
-        'deskripsi': 'baju murah'
-    },
-    {
-        'key': '3',
-        'name': 'shirt',
-        'image': 'https://image.dhgate.com/0x0p/f2/albu/g6/M00/B5/E1/rBVaSFskoLWAHYl4AAGDVvLEn1c837.jpg',
-        'harga': 'RP.130,450',
-        'deskripsi': 'baju murah'
-    },
-    {
-        'key': '4',
-        'name': 'namedd',
-        'image': 'https://traxonsky.com/wp-content/uploads/2017/04/Jordan.jpg',
-        'harga': 'RP.130,6700',
-        'deskripsi': 'baju murah dahstya'
-    },
-    {
-        'key': '5',
-        'name': 'namedd',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
-        'harga': 'RP.130,6700',
-        'deskripsi': 'baju murah dahstya'
-    },
-    {
-        'key': '6',
-        'name': 'namedd',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
-        'harga': 'RP.130,6700',
-        'deskripsi': 'baju murah dahstya'
-    },
-    {
-        'key': '7',
-        'name': 'namedd',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
-        'harga': 'RP.130,6700',
-        'deskripsi': 'baju murah dahstya'
-    },
-    {
-        'key': '8',
-        'name': 'namedd',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
-        'harga': 'RP.130,6700',
-        'deskripsi': 'baju murah dahstya'
-    },
-]
+import { connect } from 'react-redux'
+
+// Action
+import { getProduct } from '../public/action/product'
+
 
 class FlatListItem extends Component {
+
+    componentWillMount() {
+
+        const   image = JSON.parse(this.props.item.image)
+        const   bilangan = this.props.item.price;
+        
+        const   reverse = bilangan.toString().split('').reverse().join('');
+        const   ribuan  = reverse.match(/\d{1,3}/g);
+        const   result  = ribuan.join('.').split('').reverse().join('');
+
+
+        this.setState({
+            image: image,
+            price: result
+        })
+
+        
+    }
 
     render() {
         return (
@@ -68,14 +41,28 @@ class FlatListItem extends Component {
                 this.props.navigation.navigate('DetailProduct', this.props.item)
             }}>
                 <View style={styles.parentCard}>
-                    <Text>{this.props.item.name}</Text>
+
+                    <View style={styles.profile}>
+                        <Image
+                            style={styles.profilePicture}
+                            source={{uri: 'https://cdn.dribbble.com/users/1044993/screenshots/5848337/penguin_dribbble.png'}} 
+                        />
+                        <View>
+                            <Text style={{fontWeight: 'bold', color: 'black', fontSize: 12}}>PixellPie</Text>
+                            <Text style={{color: 'grey', fontSize: 10}}>3 menit lalu</Text>
+                        </View>
+                    </View>
+
                     <View style={styles.imageWrap}>
                         <Image 
                             style={styles.productImage}
                             resizeMode="cover"
-                            source={{uri: this.props.item.image}}
+                            source={{uri: this.state.image[0]}}
                         />
                     </View>
+                    <Text style={styles.title}>{this.props.item.product_name}</Text>
+                    <Text style={styles.price}>Rp {this.state.price}</Text>
+                    
                 </View>
             </TouchableOpacity>
         )
@@ -87,32 +74,57 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         borderColor: '#F5F5F5',
+        padding: 10,
+    },
+    profile: {
+        marginBottom: 5,
+        flexDirection: 'row'
+    },
+    profilePicture: {
+        width: 30,
+        height: 30,
+        borderRadius: 50,
+        marginRight: 7,
     },
     productImage: {
         width: '100%',
         height: '100%',
     },
     imageWrap: {
-        width: '80%',
+        width: '100%',
         height: 200,
-        margin: 20,
+        alignSelf: 'center'
+    },
+    title: {
+        fontWeight: 'bold', 
+        color: 'black', 
+        fontSize: 12,
+        marginTop: 7,
+    },
+    price: {
+        fontSize: 15
     }
 })
 
 
-export default class Card extends Component {
+class Card extends Component {
 
+
+    componentDidMount() {
+        this.props.dispatch(getProduct());
+    }
 
     render() {
+        console.log(this.props.product.product)
         return (
             <View>
-                
                 <FlatList
-                    data={data}
+                    data={this.props.product.product}
                     numColumns={2}
+                    keyExtractor={(item) => item.id_product.toString()}
                     renderItem={({ item, index }) => {
                         return (
-                            <FlatListItem navigation={this.props.navigation} navigation={this.props.navigation} item={item} index={index} />
+                            <FlatListItem navigation={this.props.navigation} item={item} index={index} />
                         )
                     }}
                 />
@@ -120,3 +132,11 @@ export default class Card extends Component {
         )
     }
 }
+
+const MapStateToProps = (state) => {
+    return {
+        product : state.product
+    }
+}
+
+export default connect(MapStateToProps)(Card)

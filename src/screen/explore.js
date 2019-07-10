@@ -12,22 +12,24 @@ import { withNavigation } from 'react-navigation';
 class Explore extends Component {
 	render() {
 		return (
-			<ScrollView style={{ position: 'relative' }}>
-				<View>
-					<Mycarousel />
-				</View>
-				<View style={{justifyContent :'space-between',flexDirection: 'row',paddingHorizontal: 17,padding :15,alignItems: 'center',}}>
-					<Text style={{fontSize :17,color :'black'}}>Explore Corrausel</Text>
-					<TouchableOpacity style={{padding:8}}>
-					<Text style={{fontSize :15,color :'#c2baba'}}>view more  ></Text>
-					</TouchableOpacity>
-				</View>
-				<Card navigation={this.props.navigation} />
+			<View>
+				<ScrollView style={{ position: 'relative' }}>
+					<View>
+						<Mycarousel />
+					</View>
+					<View style={{justifyContent :'space-between',flexDirection: 'row',paddingHorizontal: 17,padding :15,alignItems: 'center',}}>
+						<Text style={{fontSize :17,color :'black'}}>Explore Corrausel</Text>
+						<TouchableOpacity style={{padding:8}}>
+						<Text style={{fontSize :15,color :'#c2baba'}}>view more  ></Text>
+						</TouchableOpacity>
+					</View>
+					<Card navigation={this.props.navigation} />
+				</ScrollView>
 				<TouchableOpacity style={styles.actionButton}>
 					<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
 					<Text style={{ fontSize: 20, color: 'white' }}>JUAL</Text>
 				</TouchableOpacity>
-			</ScrollView>
+			</View>
 		);
 	}
 }
