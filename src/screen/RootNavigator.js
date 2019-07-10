@@ -9,6 +9,7 @@ import Setting from './setting';
 import Profil from './profil';
 import Chart from './chart';
 import ChangePassword from './changePassword';
+import DetailProduct from './DetailProduct'
 
 // Components
 import Home from './Home'
@@ -22,7 +23,8 @@ const AppStack = createStackNavigator({
     profil : {screen :Profil},
     chart : {screen :Chart},
     changePassword : {screen : ChangePassword},
-    wishlist : {screen :Wishlist}
+    wishlist : {screen :Wishlist},
+    DetailProduct: {screen: DetailProduct}
 },{
     headerMode: 'none',
     navigationOptions: {

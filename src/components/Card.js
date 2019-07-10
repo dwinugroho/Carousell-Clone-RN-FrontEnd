@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet, Button } from 'react-native'
 
 const data = [
     {
@@ -12,21 +12,21 @@ const data = [
     {
         'key': '2',
         'name': 'nama 2',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
+        'image': 'https://static1.fashionbeans.com/wp-content/uploads/2018/09/streetwear-best-top-3.jpg',
         'harga': '134,0000',
         'deskripsi': 'baju murah'
     },
     {
         'key': '3',
         'name': 'shirt',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
+        'image': 'https://image.dhgate.com/0x0p/f2/albu/g6/M00/B5/E1/rBVaSFskoLWAHYl4AAGDVvLEn1c837.jpg',
         'harga': 'RP.130,450',
         'deskripsi': 'baju murah'
     },
     {
         'key': '4',
         'name': 'namedd',
-        'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
+        'image': 'https://traxonsky.com/wp-content/uploads/2017/04/Jordan.jpg',
         'harga': 'RP.130,6700',
         'deskripsi': 'baju murah dahstya'
     },
@@ -61,18 +61,23 @@ const data = [
 ]
 
 class FlatListItem extends Component {
+
     render() {
         return (
-            <View style={styles.parentCard}>
-                <Text>{this.props.item.name}</Text>
-                <View style={styles.imageWrap}>
-                    <Image 
-                        style={styles.productImage}
-                        resizeMode="cover"
-                        source={require('../assets/konsep-kaos.jpg')}
-                    />
+            <TouchableOpacity style={{flex: 1}} onPress={() => {
+                this.props.navigation.navigate('DetailProduct', this.props.item)
+            }}>
+                <View style={styles.parentCard}>
+                    <Text>{this.props.item.name}</Text>
+                    <View style={styles.imageWrap}>
+                        <Image 
+                            style={styles.productImage}
+                            resizeMode="cover"
+                            source={{uri: this.props.item.image}}
+                        />
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }
@@ -96,6 +101,8 @@ const styles = StyleSheet.create({
 
 
 export default class Card extends Component {
+
+
     render() {
         return (
             <View>
@@ -104,7 +111,7 @@ export default class Card extends Component {
                     numColumns={2}
                     renderItem={({ item, index }) => {
                         return (
-                            <FlatListItem item={item} index={index} />
+                            <FlatListItem navigation={this.props.navigation} item={item} index={index} />
                         )
                     }}
                 />

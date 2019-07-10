@@ -5,13 +5,18 @@ import Slider from '../components/slider';
 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 
+import { withNavigation } from 'react-navigation';
+
 
 class Explore extends Component {
+
+
+
   render() {
     return (
       <View style={{position:'relative'}}>
-        <Card />
-        <TouchableOpacity style={styles.actionButton}>
+        <Card navigation={this.props.navigation} />
+        <TouchableOpacity style={styles.actionButton} onPress={() => {console.log(this.props.navigation)}}>
         	<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
         	<Text style={{fontSize: 20, color: 'white'}}>JUAL</Text>
         </TouchableOpacity>
@@ -19,7 +24,9 @@ class Explore extends Component {
     );
   }
 }
-export default Explore
+
+
+export default withNavigation(Explore)
 
 const styles = StyleSheet.create({
 	actionButton: {
