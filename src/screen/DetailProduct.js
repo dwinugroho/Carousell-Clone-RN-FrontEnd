@@ -10,7 +10,8 @@ import {
 	StatusBar,
 	RefreshControl,
 	Dimensions,
-	TouchableOpacity
+	TouchableOpacity,
+	TouchableWithoutFeedback
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
@@ -130,22 +131,37 @@ export default class DetailProduct extends Component {
 
 
 		        <Animated.View
-		          pointerEvents="none"
 		          style={[
 		            styles.header,
 		            { transform: [{ translateY: headerTranslate }] },
 		          ]}
 		        >
-		          <Animated.Image
-		            style={[
-		              styles.backgroundImage,
-		              {
-		                opacity: imageOpacity,
-		                transform: [{ translateY: imageTranslate }],
-		              },
-		            ]}
-		            source={{uri: this.props.navigation.state.params.image}}
-		          />
+		        	<TouchableWithoutFeedback style={{flex: 1}} onPress={() => {console.warn('Berhasil')}} >
+		        		<Animated.Image
+				          	onPress={() => {console.warn('sdhgjh')}}
+				            style={[
+				              styles.backgroundImage,
+				              {
+				                opacity: imageOpacity,
+				                transform: [{ translateY: imageTranslate }],
+				              },
+				            ]}
+				            source={{uri: this.props.navigation.state.params.image}}
+				        />
+
+		        	</TouchableWithoutFeedback>
+		        	<Animated.View 
+		        		style={[
+		        			styles.morePhotos,
+		        			{
+				                opacity: imageOpacity,
+				                transform: [{ translateY: imageTranslate }],
+				            },
+		        		]}>
+		        		<Entypo name='images' size={15} color={'#f5f6f7'} />
+		        		<Text style={{color: 'white', marginLeft: 10}}>5 Foto</Text>
+		        	</Animated.View>
+		          	
 		        </Animated.View>
 		        
 		        <Animated.View
@@ -153,7 +169,12 @@ export default class DetailProduct extends Component {
 		            styles.bar
 		            }
 		        >
-		        	<TouchableOpacity style={{flex: 1, alignItems: 'flex-start'}}>
+		        	<TouchableOpacity 
+		        		onPress={() => {
+		        			this.props.navigation.goBack()
+		        		}} 
+		        		style={{flex: 1, alignItems: 'flex-start'}}
+		        	>
 		        		<Icon style={styles.topIcon} name='arrowleft' size={20} color={'#f5f6f7'} />
 		        	</TouchableOpacity>
 		        	
@@ -215,9 +236,6 @@ const styles = StyleSheet.create({
     // iOS uses content inset, which acts like padding.
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
   },
-  menu: {
-
-  },
   row: {
     height: 40,
     margin: 16,
@@ -232,6 +250,7 @@ const styles = StyleSheet.create({
   	flexDirection: 'row',
   	backgroundColor: 'rgba(0, 0, 0, 0.4)',
   	padding: 5,
+  	paddingHorizontal: 10,
   	borderRadius: 50
   }
 });

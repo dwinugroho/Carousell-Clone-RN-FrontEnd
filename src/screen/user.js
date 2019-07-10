@@ -3,8 +3,6 @@ import { Platform, StyleSheet, Text, View, Image ,Dimensions} from 'react-native
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-import { withNavigation } from 'react-navigation';
-
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 import Iklan from './Tab/iklan';
 import Review from './Tab/review';
