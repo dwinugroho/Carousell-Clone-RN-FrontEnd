@@ -16,6 +16,11 @@ import {
 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
+import EvilIcons from 'react-native-vector-icons/dist/EvilIcons';
+import Feather from 'react-native-vector-icons/dist/Feather';
+import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
+
+import moment from 'moment'
 
 const HEADER_MAX_HEIGHT = 500;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
@@ -47,13 +52,71 @@ export default class DetailProduct extends Component {
 	_renderScrollViewContent() {
 	    const data = Array.from({ length: 30 });
 	    return (
-	      <View style={styles.scrollViewContent}>
-	        {data.map((_, i) => (
-	          <View key={i} style={styles.row}>
-	            <Text>{i}</Text>
-	          </View>
-	        ))}
-	      </View>
+	    	<View style={styles.scrollViewContent}>
+	        	<View style={{padding: 15, backgroundColor: 'white'}}>
+
+	    			<Text style={{
+	    				fontWeight: 'bold', 
+	    				color: 'black',
+	    				fontSize: 20,
+	    				marginBottom: 10
+	    			}}
+>
+	    			{this.props.navigation.state.params.product_name}
+
+	    			</Text>
+
+	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
+
+	    				<EvilIcons style={{marginRight: 20, top: 2}} name="clock" size={17} color={'black'} />
+	    				<Text>
+	    					{moment(this.props.navigation.state.params.date_created).startOf('minutes').fromNow()} oleh 
+	    					<Text style={{color: '#4287f5'}}> {this.props.navigation.state.params.username}</Text>
+	    				</Text>
+	    			</View>
+
+	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
+
+	    				<Entypo style={{marginRight: 20}} name="price-tag" size={17} color={'black'} />
+	    				<Text>
+	    					Rp {this.state.price}
+	    				</Text>
+	    			</View>
+
+	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
+
+	    				<Icon style={{marginRight: 20}} name="hearto" size={17} color={'black'} />
+	    				<Text>
+	    					5 Suka
+	    				</Text>
+	    			</View>
+
+	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
+
+	    				<Icon style={{marginRight: 20}} name="inbox" size={17} color={'black'} />
+	    				<Text>
+	    					{this.props.navigation.state.params.category}
+	    				</Text>
+	    			</View>
+
+	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
+
+	    				<Feather style={{marginRight: 20}} name="align-right" size={17} color={'black'} />
+	    				<Text>
+	    					Atasan
+	    				</Text>
+	    			</View>
+
+	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
+
+	    				<MaterialIcons style={{marginRight: 20}} name="description" size={17} color={'black'} />
+	    				<Text>
+	    					{this.props.navigation.state.params.description}
+	    				</Text>
+	    			</View>
+
+	    		</View>
+	    	</View>
 	    );
 	}
 
