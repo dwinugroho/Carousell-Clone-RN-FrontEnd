@@ -200,6 +200,17 @@ export default class DetailProduct extends Component {
 		          {this._renderScrollViewContent()}
 		        </Animated.ScrollView>
 
+		        <View style={styles.actionBottom}>
+		        	<TouchableOpacity style={styles.buttonAction}>
+		        		<Icon name="hearto" size={18} color="black" />
+		        	</TouchableOpacity>
+		        	<TouchableOpacity style={[styles.buttonAction, {borderLeftWidth: 1, borderColor: '#bdbdbd'}]}>
+		        		<Text style={{fontSize: 18}}>CHAT</Text>
+		        	</TouchableOpacity>
+		        	<TouchableOpacity style={[styles.buttonAction, {backgroundColor: '#4287f5', borderRadius: 5}]}>
+		        		<Text style={{fontSize: 18, color: 'white'}}>BELI</Text>
+		        	</TouchableOpacity>
+		        </View>
 
 		        <Animated.View
 		          style={[
@@ -209,7 +220,6 @@ export default class DetailProduct extends Component {
 		        >
 		        	<TouchableWithoutFeedback style={{flex: 1}} onPress={() => {console.warn('Berhasil')}} >
 		        		<Animated.Image
-				          	onPress={() => {console.warn('sdhgjh')}}
 				            style={[
 				              styles.backgroundImage,
 				              {
@@ -262,6 +272,7 @@ export default class DetailProduct extends Component {
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
+    position: 'relative'
   },
   content: {
     flex: 1,
@@ -323,5 +334,20 @@ const styles = StyleSheet.create({
   	padding: 5,
   	paddingHorizontal: 10,
   	borderRadius: 50
+  },
+  actionBottom: {
+  	position: 'absolute',
+  	backgroundColor: 'white',
+  	bottom: 20,
+  	elevation: 7,
+  	width: '80%',
+  	alignSelf: 'center',
+  	flexDirection: 'row',
+  	borderRadius: 5
+  },
+  buttonAction: {
+  	flex: 1, 
+  	alignItems: 'center',
+  	paddingVertical: 15
   }
 });

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image ,Dimensions} from 'react-native';
+import { Platform, StyleSheet, Text, View, Image ,Dimensions, AsyncStorage} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+
+import {getUser} from '../public/action/user'
+
+import { connect } from 'react-redux'
+
 
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 import Iklan from './Tab/iklan';
@@ -17,7 +22,19 @@ class User extends Component {
       { key: 'Review', title: 'Review' },
       { key: 'About', title: 'About' },
     ],
+    profile: 'https://www.logolynx.com/images/logolynx/b4/b4ef8b89b08d503b37f526bca624c19a.jpeg'
  };
+
+ componentDidMount() {
+      AsyncStorage.getItem('username', (error, result) => {
+          if (result) {
+              this.props.dispatch(getUser(result))
+          } else {
+              alert('gagal get User')
+          }
+      })
+
+  }
 
   render() {
     return (
@@ -25,7 +42,12 @@ class User extends Component {
           <Image style={{height:90,width:'100%'}} source={require('../assets/2.jpg')}/>
         <View style={{ flexDirection: 'row',marginTop: -40,}}>
           <View style={{ flex: 3 ,paddingLeft: 10,}}>
-            <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={require('../assets/1.jpg')} />
+            {
+              this.props.user.data.data == undefined ?
+                <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={require('../assets/1.jpg')} />
+                :
+              <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{uri: this.props.user.data.data.image}} />
+            }
           </View>
           <View style={{ flex: 3, justifyContent: 'flex-end' ,paddingLeft: 10}}>
             <View style={{ flexDirection: 'row' ,justifyContent:'space-around'}}>
@@ -41,9 +63,16 @@ class User extends Component {
             </View>
           </View>
         </View>
+
         <View style={{paddingTop: 15 ,paddingLeft: 10}}>
-          <Text style={{color :'black',fontSize: 16}}>joni hartanto</Text>
+            {
+                this.props.user.data.data == undefined ? 
+                <Text />
+                :
+                <Text style={{color :'black',fontSize: 16}}>{this.props.user.data.data.username}</Text>
+            }
         </View>
+
         <View style={{flexDirection: 'row',padding: 15,justifyContent:'space-around'}}>
           <Text style={{fontSize : 13}}>sudah verivikasi</Text>
           <Text style={{fontSize :13}}>tergabung hari ini</Text>
@@ -79,4 +108,10 @@ const styles = StyleSheet.create({
     },
 })
 
-export default withNavigation(User)
+const MapStateToProps = (state) => {
+    return {
+      user: state.user
+    }
+}
+
+export default withNavigation(connect(MapStateToProps)(User))
