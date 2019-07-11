@@ -6,7 +6,8 @@ import {
     TouchableOpacity, 
     Image, 
     StyleSheet, 
-    Button 
+    Button,
+    AsyncStorage
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -110,7 +111,13 @@ class Iklan extends Component {
 
 
     componentDidMount() {
-        this.props.dispatch(getProductSell(this.props.id_user));
+        AsyncStorage.getItem('id_user', (error, result) => {
+            if (result) {
+                alert('id_user '+ result)
+            } else {
+                alert('tidak dapat id')
+            }
+        })
     }
 
     render() {

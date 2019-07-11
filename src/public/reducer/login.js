@@ -23,6 +23,7 @@ login = async (state = initialState, action) => {
       case "LOGIN_USER_FULFILLED":
           await AsyncStorage.setItem('Token', action.payload.data.token);
           await AsyncStorage.setItem('username', action.payload.data.data[0].username);
+          await AsyncStorage.setItem('id_user', action.payload.data.data[0].id_user);
           return {
             ...state,
             isLoading: false,

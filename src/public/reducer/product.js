@@ -1,5 +1,6 @@
 const initialState = {
     product: [],
+    sellProduct: [],
     isLoading: false,
     isError: false
 }
@@ -40,7 +41,7 @@ export default product = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                product: action.payload.data.data
+                sellProduct: action.payload.data.data
             }
         default:
             return state
