@@ -117,7 +117,6 @@ class Card extends Component {
     }
 
     render() {
-        console.log(this.props.product.product)
         return (
             <View>
                 <FlatList

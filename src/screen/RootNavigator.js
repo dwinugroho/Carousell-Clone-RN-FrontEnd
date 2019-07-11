@@ -22,6 +22,7 @@ import Search from './search';
 
 
 const AppStack = createStackNavigator({
+    login : {screen :Login},
     Home : {screen : Home},
     setting : {screen :Setting},
     profil : {screen :Profil},
@@ -31,7 +32,6 @@ const AppStack = createStackNavigator({
     DetailProduct: {screen: DetailProduct},
     homeAuth : {screen : HomeAuth},
     register : {screen : Register},
-    login : {screen :Login},
     search: {screen :Search}
 },{
     headerMode: 'none',
