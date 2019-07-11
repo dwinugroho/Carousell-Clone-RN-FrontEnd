@@ -21,6 +21,7 @@ import Feather from 'react-native-vector-icons/dist/Feather';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 
 import moment from 'moment'
+import Card from '../components/Card';
 
 const HEADER_MAX_HEIGHT = 500;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
@@ -114,8 +115,8 @@ export default class DetailProduct extends Component {
 	    					{this.props.navigation.state.params.description}
 	    				</Text>
 	    			</View>
-
 	    		</View>
+				<Card/>
 	    	</View>
 	    );
 	}
@@ -207,7 +208,7 @@ export default class DetailProduct extends Component {
 		        	<TouchableOpacity style={[styles.buttonAction, {borderLeftWidth: 1, borderColor: '#bdbdbd'}]}>
 		        		<Text style={{fontSize: 18}}>CHAT</Text>
 		        	</TouchableOpacity>
-		        	<TouchableOpacity style={[styles.buttonAction, {backgroundColor: '#4287f5', borderRadius: 5}]}>
+		        	<TouchableOpacity style={[styles.buttonAction, {backgroundColor: '#4287f5', borderRadius: 5}]} onPress={() => this.props.navigation.navigate('chart')}>
 		        		<Text style={{fontSize: 18, color: 'white'}}>BELI</Text>
 		        	</TouchableOpacity>
 		        </View>
