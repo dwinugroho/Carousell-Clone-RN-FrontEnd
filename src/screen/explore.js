@@ -25,7 +25,7 @@ class Explore extends Component {
 					</View>
 					<Card navigation={this.props.navigation} />
 				</ScrollView>
-				<TouchableOpacity style={styles.actionButton}>
+				<TouchableOpacity style={styles.actionButton} onPress={() =>this.props.navigation.navigate('category')}>
 					<Icon style={styles.plusIcon} name='pluscircle' size={20} color={'white'} />
 					<Text style={{ fontSize: 20, color: 'white' }}>JUAL</Text>
 				</TouchableOpacity>

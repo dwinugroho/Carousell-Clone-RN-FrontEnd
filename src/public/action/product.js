@@ -7,3 +7,9 @@ export const getProduct = () => {
         payload: axios.get(`https://clonecarousel.herokuapp.com/products`)
     }
 }
+export const getProductSell = (id) => {
+    return {
+        type: 'GET_PRODUCT_SELL',
+        payload: axios.get(`https://clonecarousel.herokuapp.com/products/user/${id}`)
+    }
+}

@@ -18,7 +18,9 @@ import HomeAuth from './auth/homeAuth';
 import Register from '../screen/auth/register'
 import Login from './auth/login';
 import Search from './search';
-
+import Category from './category';
+import subCategory from './subCategory'
+import AddSell from './addSell';
 
 
 const AppStack = createStackNavigator({
@@ -32,7 +34,10 @@ const AppStack = createStackNavigator({
     homeAuth : {screen : HomeAuth},
     register : {screen : Register},
     login : {screen :Login},
-    search: {screen :Search}
+    search: {screen :Search},
+    category : {screen :Category},
+    subcategory : {screen :subCategory},
+    addSell : {screen :AddSell}
 },{
     headerMode: 'none',
     navigationOptions: {
