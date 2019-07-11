@@ -1,4 +1,4 @@
-package com.corosell;
+package com.carousell;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,9 +13,9 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "corosell";
+        return "carousell";
     }
-    @Override
+       @Override
  protected ReactActivityDelegate createReactActivityDelegate() {
    return new ReactActivityDelegate(this, getMainComponentName()) {
      @Override
@@ -23,5 +23,5 @@ public class MainActivity extends ReactActivity {
       return new RNGestureHandlerEnabledRootView(MainActivity.this);
      }
    };
- }
+  }
 }

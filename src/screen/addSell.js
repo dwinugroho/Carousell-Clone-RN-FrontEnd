@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity, StyleSheet ,Image} from 'react-nativ
 import HeaderBack from '../components/headerBack';
 import { Container, Content, List, ListItem, Text } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button'
-// import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker';
 
 export default class AddSell extends Component {
     state = {
@@ -87,14 +87,15 @@ export default class AddSell extends Component {
                         <ListItem>
                             <TextInput placeholder='size' style={{ width: '100%' }} />
                         </ListItem>
-                        {/* <ListItem itemDivider>
+                        <ListItem itemDivider>
                             <Text>image</Text>
                         </ListItem>
                         <TouchableOpacity onPress={this.handleImage}>
+                            <Text>image</Text>
                         <ListItem>
                         <Image source={this.state.avatarSource} />
                         </ListItem>
-                        </TouchableOpacity> */}
+                        </TouchableOpacity>
                     </List>
                 </Content>
                 <TouchableOpacity style={styles.actionButton} onPress={() => this.props.navigation.navigate('category')}>
