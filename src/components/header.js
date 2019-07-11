@@ -14,18 +14,20 @@ export default class Header extends Component {
 	render() {
 		return (
 			<View style={styles.parentView}>
-				<TextInput style={styles.search} placeholder="Cari di Corosell" />
-                      
+				<View style={{flex :3}}>
+					<TouchableOpacity style={{height :30}} onPress={() => this.props.navigation.navigate('search')}>
+					<Text style={styles.search} placeholder="Cari di Corosell" />
 					<Icon style={styles.searchIcon} name='search1' size={18} color={'#080808'} />
-      
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('wishlist')}>
-					<Icon style={styles.wishlist} name='hearto' size={23} color={'#f5f6f7'} />      
+					</TouchableOpacity>
+				</View>
+				<View style={{flex :1,flexDirection: 'row',justifyContent: 'space-around'}}>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('wishlist')}>
+					<Icon style={styles.wishlist} name='hearto' size={23} color={'#f5f6f7'} />
 				</TouchableOpacity>
-
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('chart')}>
-				  <Icon style={styles.wishlist} name='shoppingcart' size={23} color={'#f5f6f7'} />
+					<Icon style={styles.wishlist} name='shoppingcart' size={23} color={'#f5f6f7'} />
 				</TouchableOpacity>
-
+				</View>
 			</View>
 		)
 	}
@@ -39,18 +41,19 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 15,
 		justifyContent: 'center',
 		alignItems: 'center',
-		position: 'relative'
+		position: 'relative',
+		
 	},
 	search: {
 		backgroundColor: 'white',
 		paddingVertical: 3,
-		paddingLeft: 35,
+		paddingLeft: 45,
 		borderRadius: 3,
 		flex: 1,
 	},
 	searchIcon: {
 		position: 'absolute',
-		top: 17,
+		top: 7,
 		left: 22,
 	},
 	wishlist: {
