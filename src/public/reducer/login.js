@@ -1,3 +1,6 @@
+//import { setValue } from '../stroge/asynstroge'
+import { AsyncStorage } from 'react-native'
+
 const initialState = {
     data: [],
     token: [],
@@ -5,7 +8,7 @@ const initialState = {
     isError: false
   };
   
-  export default login = (state = initialState, action) => {
+login = async (state = initialState, action) => {
     switch (action.type) {
         case "LOGIN_USER_PENDING":
           return {
@@ -19,15 +22,17 @@ const initialState = {
             isError: true,
           };
       case "LOGIN_USER_FULFILLED":
-        const { token, type } = action.payload.data.token;
-        setValue("token", JSON.stringify(type + " " + token));
-        console.log(action.payload.data.token);
-        return {
-          ...state,
-           data: action.payload.data.data,
-          token: action.payload.data.token,
-        };
+          await AsyncStorage.setItem('Token', action.payload.data.token);
+          return {
+            ...state,
+            isLoading: false,
+            isError: false,
+            data: action.payload.data.data,
+            token: action.payload.data.token,
+          };
       default:
         return state;
     }
   };
+
+export default login
