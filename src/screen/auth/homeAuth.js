@@ -7,8 +7,12 @@ class HomeAuth extends Component {
     render() {
         return (
             <View style={{flex :1,paddingHorizontal: 17}}>
-                <View style={{flex :1,backgroundColor :'blue'}}>
-                    <Text>halaman 1</Text>
+                <View style={{flex :1}}>
+                    <View style={{paddingTop: 20,paddingRight: 17,}}>
+                        <TouchableOpacity style={styles.enter} onPress={()=>this.props.navigation.navigate('login')}>
+                            <Text style={{fontSize:13}}>enter</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={styles.container}>
                     <View style={styles.head}>
@@ -64,6 +68,16 @@ const styles = StyleSheet.create({
     Text : {
         fontSize: 13,
         color :'#FFFFFF'
+    },
+    enter : {
+        paddingHorizontal: 13,
+        paddingVertical :12,
+        alignSelf:'flex-end',
+        left :12,
+        right :20,
+        borderRadius: 5,
+        borderWidth: 1,
+        color:'#e3e4e6'
     }
   });
   

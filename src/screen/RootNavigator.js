@@ -16,6 +16,7 @@ import Home from './Home'
 import Wishlist from './wishlist';
 import HomeAuth from './auth/homeAuth';
 import Register from '../screen/auth/register'
+import Login from './auth/login';
 
 
 
@@ -28,7 +29,8 @@ const AppStack = createStackNavigator({
     wishlist : {screen :Wishlist},
     DetailProduct: {screen: DetailProduct},
     homeAuth : {screen : HomeAuth},
-    register : {screen : Register}
+    register : {screen : Register},
+    login : {screen :Login}
 },{
     headerMode: 'none',
     navigationOptions: {
