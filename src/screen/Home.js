@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, AsyncStorage } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
 import Activity from './activity';
@@ -23,6 +23,16 @@ export default class Home extends Component {
 	      { key: 'User', title: 'User' },
 	    ],
 	 };
+
+	 componentWillMount() {
+        AsyncStorage.getItem('Token', (error, result) => {
+            if (result) {
+                alert('Token Ada')
+            } else {
+            	this.props.navigation.navigate('homeAuth')
+            }
+        })
+    }
 
 	render() {
 		return(

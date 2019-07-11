@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Text } from 'native-base';
+import { AsyncStorage } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import HeaderBack from '../components/headerBack'
+
 export default class ListDividerExample extends Component {
+
+  logout = async () => {
+
+      await AsyncStorage.removeItem('Token')
+
+      this.props.navigation.navigate('homeAuth')
+  }
+
   render() {
     return (
       <Container>
@@ -53,10 +63,10 @@ export default class ListDividerExample extends Component {
               <Text>application policy</Text>
                 </TouchableOpacity>
             </ListItem>
-            <TouchableOpacity onPress ={() => this.props.navigation.navigate('homeAuth')}>
-            <ListItem itemDivider>
-              <Text style={{color :'red'}}>keluar</Text>
-              </ListItem>  
+            <TouchableOpacity onPress ={this.logout}>
+                <ListItem itemDivider>
+                    <Text style={{color :'red'}}>keluar</Text>
+                </ListItem>  
             </TouchableOpacity>
           </List>
         </Content>
