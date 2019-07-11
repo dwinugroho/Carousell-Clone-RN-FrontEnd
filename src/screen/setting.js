@@ -65,15 +65,17 @@ export default class ListDividerExample extends Component {
               <Text>service requirements</Text>
             </ListItem>
                 </TouchableOpacity>
-                <TouchableOpacity>
-            <ListItem>
-              <Text>application policy</Text>
-            </ListItem>
+            <TouchableOpacity>
+              <ListItem>
+                <Text>application policy</Text>
+              </ListItem>
+              </TouchableOpacity>
             <TouchableOpacity onPress ={this.logout}>
                 <ListItem itemDivider>
                     <Text style={{color :'red'}}>keluar</Text>
                 </ListItem>  
             </TouchableOpacity>
+
           </List>
         </Content>
       </Container>
