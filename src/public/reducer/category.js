@@ -1,46 +1,47 @@
 const initialState = {
-    product: [],
+    data: [],
     isLoading: false,
-    isError: false
+    isError: false,
+    subCategory:[]
 }
 
-export default product = (state = initialState, action) => {
+export default category = (state = initialState, action) => {
     switch (action.type) {
-        case "GET_PRODUCT_PENDING":
+        case "GET_CATEGORY_PENDING":
             return {
                 ...state,
                 isLoading: true
             }
-        case "GET_PRODUCT_REJECTED":
+        case "GET_CATEGORY_REJECTED":
             return {
                 ...state,
                 isLoading: false,
                 isError: true
             }
-        case "GET_PRODUCT_FULFILLED":
+        case "GET_CATEGORY_FULFILLED":
             return {
                 ...state,
                 isLoading: false,
                 isError: false,
-                product: action.payload.data.data
+                data: action.payload.data.data
             }
-        case "GET_PRODUCT_SELL_PENDING":
+        case "GET_SUBCATEGORY_PENDING":
             return {
                 ...state,
                 isLoading: true
             }
-        case "GET_PRODUCT_SELL_REJECTED":
+        case "GET_SUBCATEGORY_REJECTED":
             return {
                 ...state,
                 isLoading: false,
                 isError: true
             }
-        case "GET_PRODUCT_SELL_FULFILLED":
+        case "GET_SUBCATEGORY_FULFILLED":
             return {
                 ...state,
                 isLoading: false,
                 isError: false,
-                product: action.payload.data.data
+                subCategory: action.payload.data.data
             }
         default:
             return state
