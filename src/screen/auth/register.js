@@ -1,8 +1,36 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Button } from 'react-native'
+import { Alert,Text, View, TextInput, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Button } from 'react-native'
 import AntDesign from 'react-native-vector-icons/dist/AntDesign'
 import HeaderBack from '../../components/headerBack'
+import { connect } from 'react-redux';
+import { registerUser } from '../../public/action/login';
+
+
 class Register extends Component {
+    constructor() {
+        super();
+        this.state = {
+            username: '',
+            password: '',
+            email : ''
+        };
+    }
+    register = () => {
+        console.log('dapat')
+        const {username,password,email} = this.state
+        if (this.state.username !== '' && this.state.password !== '' && this.state.email !== '') {
+            let data = {
+                'username' : username,
+                'password' : password,
+                'email' : email,
+            }
+            this.props.dispatch(registerUser(data));
+            this.props.navigation.pop()
+            return true
+        } else {
+            Alert.alert("warning", 'data please insert data in from')
+        }
+    }
     render() {
         return (
             <React.Fragment>
@@ -15,22 +43,50 @@ class Register extends Component {
                 </View>
                 <View style={{ paddingHorizontal: 21, paddingTop: 20 }}>
 
-                    <TextInput style={styles.input} placeholder='Nama Pengguna' />
-                    <TextInput style={styles.input} placeholder='Kata Sandi' />
-                    <TextInput style={styles.input} placeholder='Kota' />
-                    <TextInput style={styles.input} placeholder='Email' />
+                    <TextInput style={styles.input} placeholder='username' 
+                    onChangeText={(value) => {this.setState({username: value})}}
+                    returnKeyType='next'
+                    value={this.state.username}
+                    autoCorrect={false}
+                    editable={true}
+                    maxLength={40}
+                    multiline={false}/>
+
+                    <TextInput style={styles.input} 
+                    placeholder='password' 
+                    onChangeText={(value) => this.setState({ password: value })}
+                    value={this.state.password}
+                    editable={true}
+                    secureTextEntry={true}
+                    maxLength={40}
+                    multiline={false}
+                    autoCorrect={false}/>
+
+                    <TextInput style={styles.input} placeholder='Email' 
+                    onChangeText={(value) => this.setState({ email: value })}
+                    value={this.state.email}
+                    autoCorrect={false}
+                    editable={true}
+                    returnKeyType='next'
+                    maxLength={40}
+                    multiline={false}/>
 
                 </View>
                 <View style={{ paddingHorizontal: 21, paddingTop: 30 }}>
                     <Button 
                         title="Buat Akun Baru"
-                    />
+                        onPress={this.register}/>
                 </View>
             </React.Fragment>
         )
     }
 }
-export default Register
+const mapStateToProps = state => {
+    return {
+        login : state.login
+    }
+}
+export default connect(mapStateToProps)(Register)
 const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 1,

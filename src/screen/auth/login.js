@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import HeaderBack from '../../components/headerBack'
-import signIn from '../../public/action/login'
+import {signIn} from '../../public/action/login'
 import {connect} from 'react-redux'
 class Login extends Component {
     constructor() {
@@ -36,7 +36,6 @@ class Login extends Component {
                     placeholder='Username' 
                     onChangeText={(value) => {this.setState({username: value})}}
                     value={this.state.username}
-                    keyboardType="email-address"
                     returnKeyType='next'
                     autoCorrect={false}
                     editable={true}
