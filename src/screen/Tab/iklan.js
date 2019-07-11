@@ -10,6 +10,8 @@ import {
     AsyncStorage
 } from 'react-native'
 
+import { withNavigation } from 'react-navigation'
+
 import { connect } from 'react-redux'
 import moment from 'moment'
 
@@ -36,6 +38,7 @@ class FlatListItem extends Component {
     }
 
     render() {
+
         return (
             <TouchableOpacity style={{flex: 1}} onPress={() => {
                 this.props.navigation.navigate('DetailProduct', this.props.item)
@@ -113,22 +116,19 @@ class Iklan extends Component {
     componentDidMount() {
         AsyncStorage.getItem('id_user', (error, result) => {
             if (result) {
-                alert('id_user '+ result)
-            } else {
-                alert('tidak dapat id')
+                const id_user = parseInt(result)
+                this.props.dispatch(getProductSell(id_user))
             }
         })
     }
 
-    render() {
-       console.log('this.props.product.sell')
-       console.log(this.props)
+    render() { 
         return (
             <View>
                 <FlatList
-                    data={this.props}
+                    data={this.props.product.sellProduct}
                     numColumns={2}
-                    keyExtractor={(item) => item.id_user.toString()}
+                    keyExtractor={(item) => item.id_product.toString()}
                     renderItem={({ item, index }) => {
                         return (
                             <FlatListItem navigation={this.props.navigation} item={item} index={index} />
@@ -146,4 +146,4 @@ const MapStateToProps = (state) => {
     }
 }
 
-export default connect(MapStateToProps)(Iklan)
+export default withNavigation(connect(MapStateToProps)(Iklan))
