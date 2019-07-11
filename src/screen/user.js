@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image ,Dimensions, AsyncStorage} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Platform, StyleSheet, Text, View, Image ,Dimensions, AsyncStorage,ScrollView} from 'react-native';
+import { TouchableOpacity} from 'react-native-gesture-handler';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import ImagePicker from 'react-native-image-picker';
 
 import {getUser} from '../public/action/user'
 
@@ -35,20 +36,41 @@ class User extends Component {
       })
 
   }
+  handleImage = async () => {
+    const options = {
+        mediaType : 'photo',
+        noData : true
+      };
+    ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
 
+        if (response.didCancel) {
+            console.log('User cancelled image picker');
+        } else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+        } else {
+            const source = { uri: response.uri };
+            this.setState({
+                avatarSource: source,
+            })
+        }
+     })
+}
   render() {
     return (
-      <View style={{flex :1,backgroundColor: '#FFFFFF',}}>
+      <ScrollView style={{flex :1,backgroundColor: '#FFFFFF',}}>
           <Image style={{height:90,width:'100%'}} source={require('../assets/2.jpg')}/>
         <View style={{ flexDirection: 'row',marginTop: -40,}}>
-          <View style={{ flex: 3 ,paddingLeft: 10,}}>
+          <TouchableOpacity style={{ flex: 3 ,paddingLeft: 10,}} onPress={this.handleImage}>
             {
               this.props.user.data.data == undefined ?
                 <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={require('../assets/1.jpg')} />
                 :
               <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{uri: this.props.user.data.data.image}} />
             }
-          </View>
+          </TouchableOpacity>
           <View style={{ flex: 3, justifyContent: 'flex-end' ,paddingLeft: 10}}>
             <View style={{ flexDirection: 'row' ,justifyContent:'space-around'}}>
               <TouchableOpacity  style={{padding :7}}>
@@ -96,7 +118,7 @@ class User extends Component {
 	                    />
 	                }
 				    />
-			</View>
+			</ScrollView>
 		)
 	}
 }
