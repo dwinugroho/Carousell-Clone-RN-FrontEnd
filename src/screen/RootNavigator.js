@@ -24,6 +24,7 @@ import AddSell from './addSell';
 
 
 const AppStack = createStackNavigator({
+    login : {screen :Login},
     Home : {screen : Home},
     setting : {screen :Setting},
     profil : {screen :Profil},
@@ -33,11 +34,12 @@ const AppStack = createStackNavigator({
     DetailProduct: {screen: DetailProduct},
     homeAuth : {screen : HomeAuth},
     register : {screen : Register},
-    login : {screen :Login},
+  
     search: {screen :Search},
     category : {screen :Category},
     subcategory : {screen :subCategory},
     addSell : {screen :AddSell}
+
 },{
     headerMode: 'none',
     navigationOptions: {

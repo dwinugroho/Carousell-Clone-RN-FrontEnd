@@ -27,7 +27,7 @@ export default class Home extends Component {
 	 componentWillMount() {
         AsyncStorage.getItem('Token', (error, result) => {
             if (result) {
-                alert('Token Ada')
+            	console.log('Login Success')
             } else {
             	this.props.navigation.navigate('homeAuth')
             }

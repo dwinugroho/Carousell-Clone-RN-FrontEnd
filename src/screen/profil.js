@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 import { ScrollView,StyleSheet, Text, View, TextInput ,Button} from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import HeaderBack from '../components/headerBack'
-export default class Profil extends Component {
+
+import {getUser} from '../public/action/login'
+
+import { connect } from 'react-redux'
+
+class Profil extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +26,9 @@ export default class Profil extends Component {
         console.log("A date has been picked: ", date);
         this.hideDateTimePicker();
       };
+
     render() {
+        console.log(this.props.user)
         return (
             <ScrollView>
                 <HeaderBack title="change profil" navigation={this.props.navigation}/>
@@ -81,6 +88,14 @@ export default class Profil extends Component {
         )
     }
 }
+
+const MapStateToProps = (state) => {
+    return {
+        user: state.login
+    }
+}
+
+export default connect(MapStateToProps)(Profil)
 
 const styles = StyleSheet.create({
     head: {
