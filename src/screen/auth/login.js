@@ -60,7 +60,6 @@ class Login extends Component {
                     placeholder='Username' 
                     onChangeText={(value) => {this.setState({username: value})}}
                     value={this.state.username}
-                    keyboardType="email-address"
                     returnKeyType='next'
                     autoCorrect={false}
                     editable={true}

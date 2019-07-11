@@ -1,4 +1,3 @@
-//import { setValue } from '../stroge/asynstroge'
 import { AsyncStorage } from 'react-native'
 
 const initialState = {
@@ -30,6 +29,45 @@ login = async (state = initialState, action) => {
             data: action.payload.data.data,
             token: action.payload.data.token,
           };
+        
+        case "USER_REGISTER_PENDING":
+          return {
+              ...state,
+            isLoading: true
+          };
+        case "USER_REGISTER_REJECTED":
+          return {
+            ...state,
+            isLoading: false,
+            isError: true,
+          };
+      case "USER_REGISTER_FULFILLED":
+        return {
+          ...state,
+          isLoading: false,
+          isError: false,
+          data: action.payload.data.data,
+        };
+        case "EDIT_PASWORD":
+            return {
+                ...state,
+                isLoading: true
+            }
+        case "EDIT_PASSWORD_REJECTED":
+            return {
+                ...state,
+                isLoading: false,
+                isError: true
+            }
+        case "EDIT_PASSWORD_FULFILLED":
+            return {
+                ...state,
+                isLoading: false,
+                data: state.data.map(value =>
+                    (value.id_user == action.payload.data.data.id_user) ?
+                        action.payload.data.data : value
+                )
+            }
       default:
         return state;
     }
