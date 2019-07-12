@@ -10,6 +10,7 @@ export default class ListDividerExample extends Component {
 
       await AsyncStorage.removeItem('Token')
       await AsyncStorage.removeItem('username')
+      await AsyncStorage.removeItem('id_user')
 
       this.props.navigation.navigate('homeAuth')
   }

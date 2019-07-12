@@ -24,7 +24,7 @@ export default class Header extends Component {
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('wishlist')}>
 					<Icon style={styles.wishlist} name='hearto' size={23} color={'#f5f6f7'} />
 				</TouchableOpacity>
-				<TouchableOpacity onPress={() => this.props.navigation.navigate('chart')}>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('Cart')}>
 					<Icon style={styles.wishlist} name='shoppingcart' size={23} color={'#f5f6f7'} />
 				</TouchableOpacity>
 				</View>
