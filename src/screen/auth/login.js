@@ -84,6 +84,9 @@ class Login extends Component {
                         <Text style={styles.Text}>Login</Text>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity onPress={() => {this.props.navigation.navigate('sendEmail')}} style={{paddingTop: 20, alignItems: "center"}}>
+                    <Text style={{color: "#4287f5", fontWeight: "bold", textDecorationLine: 'underline'}}>Forget Password</Text>
+                </TouchableOpacity>
                 {
                     this.props.login.isLoading ? 
                         <ActivityIndicator size="large" color="green" />
