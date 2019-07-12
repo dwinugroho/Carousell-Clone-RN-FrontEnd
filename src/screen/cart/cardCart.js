@@ -36,7 +36,8 @@ class cardCart extends Component {
 			image: image,
 			totalProduct: this.props.item.total_product,
 			totalPrice: this.props.item.total_product * this.props.item.price,
-			id_product: this.props.item.id_product
+			id_product: this.props.item.id_product,
+            price: this.props.item.price,
 		})
 	}
 
@@ -71,15 +72,17 @@ class cardCart extends Component {
 
                                 AsyncStorage.getItem('id_user', (error, result) => {
                                     if (result) {
-                                        this.setState({
-                                            totalProduct: this.state.totalProduct-1
-                                        })
 
                                         this.props.dispatch(addCart({
                                             id_user: result,
                                             id_product: this.props.item.id_product,
                                             jumlah: -1
                                         }))
+
+                                        this.setState({
+                                            totalProduct: this.state.totalProduct-1,
+                                            totalPrice: this.state.totalPrice - this.state.price
+                                        })
 
                                         this.props.dispatch(getCart(result))
                                     }
@@ -112,14 +115,16 @@ class cardCart extends Component {
                         <TouchableOpacity  onPress={() => {
                             AsyncStorage.getItem('id_user', (error, result) => {
                                 if (result) {
-                                    this.setState({
-                                        totalProduct: this.state.totalProduct+1
-                                    })
 
                                     this.props.dispatch(addCart({
                                         id_user: result,
                                         id_product: this.props.item.id_product
                                     }))
+
+                                    this.setState({
+                                        totalProduct: this.state.totalProduct+1,
+                                        totalPrice: this.state.totalPrice + this.state.price
+                                    })
 
                                     this.props.dispatch(getCart(result))
                                 }
