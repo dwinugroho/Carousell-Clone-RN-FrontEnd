@@ -43,11 +43,27 @@ wishlist = (state = initialState, action) => {
               ...state,
               isLoading: false,
               isError: false,
-              // data: action.payload.data.data.id_product
+            }
+        case "DELETE_WISHLIST_PENDING" :
+            return {
+              ...state,
+              isLoading: true,
+              isError: false
+            }
+        case "DELETE_WISHLIST_REJECTED" :
+            return {
+              ...state,
+              isLoading: false,
+              isError: true
+            }
+        case "DELETE_WISHLIST_FULFILLED" :
+            return {
+              ...state,
+              isLoading: false,
+              isError: false,
               data: state.data.filter(wishlist => {
-                        wishlist.data[0].id_product !== action.payload.data.data
+                        wishlist.id !== action.payload.data.data
                     })
-              // data: action.payload.data.data
 
             }
       default:

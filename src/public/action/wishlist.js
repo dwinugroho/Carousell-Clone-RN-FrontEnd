@@ -14,3 +14,10 @@ export const createWishlist = (id_user, id_product) => {
         payload: axios.post(`${IP}/wishlist?id_user=${id_user}&id_product=${id_product}`)
     }
 }
+
+export const deleteWishlist = (id_user, id_product) => {
+    return {
+        type: 'DELETE_WISHLIST',
+        payload: axios.post(`${IP}/wishlist?id_user=${id_user}&id_product=${id_product}`)
+    }
+}
