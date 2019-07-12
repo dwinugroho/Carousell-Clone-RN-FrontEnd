@@ -21,6 +21,8 @@ import Search from './search';
 import Category from './category';
 import subCategory from './subCategory'
 import AddSell from './addSell';
+import ForgetPassword from './forgetPass';
+import sendEmail from './sendEmail';
 
 
 const AppStack = createStackNavigator({
@@ -37,7 +39,9 @@ const AppStack = createStackNavigator({
     search: {screen :Search},
     category : {screen :Category},
     subcategory : {screen :subCategory},
-    addSell : {screen :AddSell}
+    addSell : {screen :AddSell},
+    forgetPassword: {screen: ForgetPassword},
+    sendEmail: {screen: sendEmail}
 
 },{
     headerMode: 'none',
