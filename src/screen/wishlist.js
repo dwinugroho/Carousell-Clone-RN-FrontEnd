@@ -33,6 +33,7 @@ componentDidMount = () => {
         return (
             <View style={{marginBottom:100}}>
               <HeaderBack title="Wishlist" navigation={this.props.navigation}/>
+
                 <FlatList
                     data={this.props.wishlist.data.data}
                     numColumns={2}

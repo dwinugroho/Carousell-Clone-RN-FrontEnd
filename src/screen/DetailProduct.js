@@ -239,13 +239,16 @@ class DetailProduct extends Component {
 		        </Animated.ScrollView>
 
 		        <View style={styles.actionBottom}>
+
 		        	<TouchableOpacity style={styles.buttonAction} onPress={() => {
+
 		        		AsyncStorage.getItem('id_user', (error, result) => {
 	        				if (result) {
 	        					this.props.dispatch(createWishlist(result, this.props.navigation.state.params.id_product))
 	        					alert('Success add to wishlist')
 	        				}
 	        			})
+	        			
 		        	}}>
 		        		<Icon name="hearto" size={18} color="black" />
 		        	</TouchableOpacity>

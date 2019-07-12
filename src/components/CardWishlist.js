@@ -35,6 +35,7 @@ class CardWishlist extends Component {
 	render() {
 		return(
 			<View style={{flex :1, margin: 10, borderRadius: 7, borderWidth: 2, borderColor: '#f5f5f5'}}>
+			
 	            <TouchableOpacity style={{flex: 1}} onPress={() => {
 	                this.props.navigation.navigate('DetailProduct', this.props.item)
 	            }}>
