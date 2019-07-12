@@ -56,11 +56,20 @@ class FlatListItem extends Component {
                         </View>
                     </View>
                     <View style={styles.imageWrap}>
-                        <Image 
-                            style={styles.productImage}
-                            resizeMode="cover"
-                            source={{uri: this.state.image[0]}}
-                        />
+                        {
+                            this.state.image == null ?
+                                <Image 
+                                    style={styles.productImage}
+                                    resizeMode="cover"
+                                    source={{uri: 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}}
+                                />
+                            :
+                                <Image 
+                                    style={styles.productImage}
+                                    resizeMode="cover"
+                                    source={{uri: this.state.image[0]}}
+                                />
+                        }
                     </View>
                     <Text style={styles.title}>{this.props.item.product_name}</Text>
                     <Text style={styles.price}>Rp {this.state.price}</Text>
