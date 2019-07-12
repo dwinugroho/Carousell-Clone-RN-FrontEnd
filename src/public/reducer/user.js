@@ -1,5 +1,6 @@
 const initialState = {
     data: [],
+    seller: [],
     isLoading: false,
     isError: false
  };
@@ -24,6 +25,25 @@ user = (state = initialState, action) => {
               isLoading: false,
               isError: false,
               data: action.payload.data
+            }
+        case "GET_SELLER_PENDING" :
+            return {
+              ...state,
+              isLoading: true,
+              isError: false
+            }
+        case "GET_SELLER_REJECTED" :
+            return {
+              ...state,
+              isLoading: false,
+              isError: true
+            }
+        case "GET_SELLER_FULFILLED" :
+            return {
+              ...state,
+              isLoading: false,
+              isError: false,
+              seller: action.payload.data.data
             }
         default:
         	return state;
