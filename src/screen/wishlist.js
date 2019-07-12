@@ -3,10 +3,19 @@ import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet,TouchableWith
 import HeaderBack from '../components/headerBack'
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 import Entypo from 'react-native-vector-icons/dist/Entypo'
+
+import {getWishlist} from '../public/action/wishlist';
+
+import { connect } from 'react-redux';
+
+
+
+
+
 const data = [
     {
         'key': '1',
-        'name': 'name',
+        'name': 'coba',
         'image': 'https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg',
         'harga': 'RP.130,0000',
         'deskripsi': 'baju murah'
@@ -63,6 +72,25 @@ const data = [
 ]
 
 class FlatListItem extends Component {
+
+    componentWillMount() {
+
+        const   image = JSON.parse(this.props.item.image)
+        const   bilangan = this.props.item.price;
+        
+        const   reverse = bilangan.toString().split('').reverse().join('');
+        const   ribuan  = reverse.match(/\d{1,3}/g);
+        const   result  = ribuan.join('.').split('').reverse().join('');
+
+
+        this.setState({
+            image: image,
+            price: result
+        })
+
+        
+    }
+
     render() {
         return (
             <View style={{flex :1, margin: 10, borderRadius: 7, borderWidth: 2, borderColor: '#f5f5f5'}}>
@@ -72,19 +100,19 @@ class FlatListItem extends Component {
                     <Image
                         style={{height: 200, borderRadius: 8}}
                         resizeMode="cover"
-                        source={{ uri: this.props.item.image }}
+                        source={{ uri: this.state.image[0]}}
                     />
 
                 </View>
-                <Text style={{marginHorizontal: 5, marginTop: 5, color: 'black'}}>Sandal</Text>
-                <Text style={{marginHorizontal: 5, color: 'black'}}>Rp. 100.890</Text>
+                <Text style={{marginHorizontal: 5, marginTop: 5, color: 'black'}}>{this.props.item.product_name}</Text>
+                <Text style={{marginHorizontal: 5, color: 'black'}}>{this.props.item.price}</Text>
                 <View style={{flexDirection: 'row', margin: 5}}>
                     <Image
                         style={styles.profilePicture}
-                        source={{uri: 'https://cdn.dribbble.com/users/1044993/screenshots/5848337/penguin_dribbble.png'}} 
+                        source={{uri: this.props.item.user_image}} 
                     />
                     <View>
-                        <Text style={{fontWeight: 'bold', color: 'grey', fontSize: 12}}>PixellPie</Text>
+                        <Text style={{fontWeight: 'bold', color: 'grey', fontSize: 12}}>{this.props.item.username}</Text>
                         <Text style={{color: 'grey', fontSize: 10}}>3 menit lalu</Text>
                     </View>
                 </View>
@@ -118,13 +146,28 @@ const styles = StyleSheet.create({
 })
 
 
-export default class Card extends Component {
+
+
+
+class wishlist extends Component {
+
+
+fetchDataWishlist= () => {
+    this.props.dispatch(getWishlist())
+}
+
+componentDidMount = () => {
+    this.fetchDataWishlist();
+}
+
+
+
     render() {
         return (
             <View>
               <HeaderBack title="Wishlist" navigation={this.props.navigation}/>
                 <FlatList
-                    data={data}
+                    data={this.props.wishlist.data.data}
                     numColumns={2}
                     renderItem={({ item, index }) => {
                         return (
@@ -137,3 +180,12 @@ export default class Card extends Component {
     }
 }
 
+const mapStateToProps = state =>{
+  return {
+    wishlist : state.wishlist,
+  }
+}
+
+
+
+export default connect(mapStateToProps)(wishlist);
