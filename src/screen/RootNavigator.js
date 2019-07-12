@@ -7,7 +7,7 @@ import User from './user';
 import Explore from './explore';
 import Setting from './setting';
 import Profil from './profil';
-import Chart from './chart';
+import Cart from './cart/cart';
 import ChangePassword from './changePassword';
 import DetailProduct from './DetailProduct'
 
@@ -21,24 +21,27 @@ import Search from './search';
 import Category from './category';
 import subCategory from './subCategory'
 import AddSell from './addSell';
+import ForgetPassword from './forgetPass';
+import sendEmail from './sendEmail';
 
 
 const AppStack = createStackNavigator({
-    login : {screen :Login},
     Home : {screen : Home},
     setting : {screen :Setting},
     profil : {screen :Profil},
-    chart : {screen :Chart},
+    Cart : {screen :Cart},
     changePassword : {screen : ChangePassword},
     wishlist : {screen :Wishlist},
     DetailProduct: {screen: DetailProduct},
     homeAuth : {screen : HomeAuth},
+    login : {screen :Login},
     register : {screen : Register},
-  
     search: {screen :Search},
     category : {screen :Category},
     subcategory : {screen :subCategory},
-    addSell : {screen :AddSell}
+    addSell : {screen :AddSell},
+    forgetPassword: {screen: ForgetPassword},
+    sendEmail: {screen: sendEmail}
 
 },{
     headerMode: 'none',
