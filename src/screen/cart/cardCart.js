@@ -16,6 +16,8 @@ import { TextInput } from 'react-native-gesture-handler';
 
 import { connect } from 'react-redux'
 import { deleteCart } from '../../public/action/cart'
+import { addCart } from '../../public/action/cart'
+import { getCart } from '../../public/action/cart'
 
 class cardCart extends Component {
 
@@ -34,7 +36,8 @@ class cardCart extends Component {
 			image: image,
 			totalProduct: this.props.item.total_product,
 			totalPrice: this.props.item.total_product * this.props.item.price,
-			id_product: this.props.item.id_product
+			id_product: this.props.item.id_product,
+            price: this.props.item.price,
 		})
 	}
 
@@ -64,7 +67,41 @@ class cardCart extends Component {
                     <Text style={{fontSize: 17, color: 'black'}}>{this.props.item.product_name}</Text>
 
                     <View style={{marginTop: 10, flexDirection: 'row'}}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            if (this.state.totalProduct > 1) {
+
+                                AsyncStorage.getItem('id_user', (error, result) => {
+                                    if (result) {
+
+                                        this.props.dispatch(addCart({
+                                            id_user: result,
+                                            id_product: this.props.item.id_product,
+                                            jumlah: -1
+                                        }))
+
+                                        this.setState({
+                                            totalProduct: this.state.totalProduct-1,
+                                            totalPrice: this.state.totalPrice - this.state.price
+                                        })
+
+                                        this.props.dispatch(getCart(result))
+                                    }
+                                })
+
+                            } else if (this.state.totalProduct == 1) {
+                                AsyncStorage.getItem('id_user', (error, result) => {
+                                    if (result) {
+                                        const Data = {
+                                            id_user: result,
+                                            id_product: this.state.id_product
+                                        }
+
+                                        this.props.dispatch(deleteCart(Data))
+                                    }
+                                })
+                            }
+
+                        }}>
                             <AntDesign name="minuscircleo" size={17} color="black" />
                         </TouchableOpacity>
                         <TextInput style={{
@@ -75,7 +112,24 @@ class cardCart extends Component {
                             top: -10,
                             marginHorizontal: 5
                         }} value={this.state.totalProduct.toString()} />
-                        <TouchableOpacity>
+                        <TouchableOpacity  onPress={() => {
+                            AsyncStorage.getItem('id_user', (error, result) => {
+                                if (result) {
+
+                                    this.props.dispatch(addCart({
+                                        id_user: result,
+                                        id_product: this.props.item.id_product
+                                    }))
+
+                                    this.setState({
+                                        totalProduct: this.state.totalProduct+1,
+                                        totalPrice: this.state.totalPrice + this.state.price
+                                    })
+
+                                    this.props.dispatch(getCart(result))
+                                }
+                            })
+                        }}>
                             <AntDesign name="pluscircleo" size={17} color="black" />
                         </TouchableOpacity>
 
