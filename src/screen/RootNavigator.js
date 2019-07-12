@@ -7,7 +7,7 @@ import User from './user';
 import Explore from './explore';
 import Setting from './setting';
 import Profil from './profil';
-import Chart from './chart';
+import Cart from './cart/cart';
 import ChangePassword from './changePassword';
 import DetailProduct from './DetailProduct'
 
@@ -27,7 +27,7 @@ const AppStack = createStackNavigator({
     Home : {screen : Home},
     setting : {screen :Setting},
     profil : {screen :Profil},
-    chart : {screen :Chart},
+    Cart : {screen :Cart},
     changePassword : {screen : ChangePassword},
     wishlist : {screen :Wishlist},
     DetailProduct: {screen: DetailProduct},
