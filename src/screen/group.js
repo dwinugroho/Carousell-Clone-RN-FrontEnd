@@ -6,7 +6,7 @@ class Group extends Component{
   render() {
     return (
       <View>
-        <Text>Group</Text>
+        <Text></Text>
         </View>
     );
   }

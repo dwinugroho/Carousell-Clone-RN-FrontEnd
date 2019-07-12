@@ -25,6 +25,23 @@ export default cart = (state = initialState, action) => {
                 isError: false,
                 data: action.payload.data.data
             }
+        case "ADD_CART_PENING":
+            return {
+                ...state,
+                isLoading: true
+            }
+        case "ADD_CART_REJECTED":
+            return {
+                ...state,
+                isLoading: false,
+                isError: true
+            }
+        case "ADD_CART_FULFILLED":
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+            }
         case "DELETE_CART_PENING":
             return {
                 ...state,
@@ -41,7 +58,7 @@ export default cart = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                data: state.data.filter(data => data.id_product !== action.payload.data.id_product)
+                data: state.data.filter(data => data.id_product !== action.payload.data.data.id_product)
             }
         default:
             return state

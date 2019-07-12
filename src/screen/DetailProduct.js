@@ -11,10 +11,12 @@ import {
 	RefreshControl,
 	Dimensions,
 	TouchableOpacity,
-	TouchableWithoutFeedback
+	TouchableWithoutFeedback,
+	AsyncStorage
 } from 'react-native'
 
 import { getSeller } from '../public/action/user'
+import { addCart } from '../public/action/cart'
 import { connect } from 'react-redux'
 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
@@ -45,6 +47,7 @@ class DetailProduct extends Component {
 		    image: null,
 	    };
 	}
+
 
     componentWillMount() {
         const image = JSON.parse(this.props.navigation.state.params.image)
@@ -237,9 +240,27 @@ class DetailProduct extends Component {
 		        	<TouchableOpacity style={styles.buttonAction}>
 		        		<Icon name="hearto" size={18} color="black" />
 		        	</TouchableOpacity>
-		        	<TouchableOpacity style={[styles.buttonAction, {borderLeftWidth: 1, borderColor: '#bdbdbd'}]}>
-		        		<Text style={{fontSize: 18}}>CHAT</Text>
+
+
+
+		        	<TouchableOpacity style={[styles.buttonAction, {borderLeftWidth: 1, borderColor: '#bdbdbd'}]}
+		        		onPress={() => {
+		        			AsyncStorage.getItem('id_user', (error, result) => {
+		        				if (result) {
+		        					this.props.dispatch(addCart({
+		        						id_user: result,
+		        						id_product: this.props.navigation.state.params.id_product
+		        					}))
+		        					alert('Success add to Cart')
+		        				}
+		        			})
+		        		}}
+		        	>
+		        		<Text style={{fontSize: 18}}>Add to Cart</Text>
 		        	</TouchableOpacity>
+
+
+
 		        	<TouchableOpacity style={[styles.buttonAction, {backgroundColor: '#4287f5', borderRadius: 5}]} onPress={() => this.props.navigation.navigate('chart')}>
 		        		<Text style={{fontSize: 18, color: 'white'}}>BELI</Text>
 		        	</TouchableOpacity>
@@ -251,7 +272,7 @@ class DetailProduct extends Component {
 		            { transform: [{ translateY: headerTranslate }] },
 		          ]}
 		        >
-		        	<TouchableWithoutFeedback style={{flex: 1}} onPress={() => {console.warn('Berhasil')}} >
+		        	<TouchableWithoutFeedback style={{flex: 1}} >
 		        		<Animated.Image
 				            style={[
 				              styles.backgroundImage,

@@ -11,6 +11,13 @@ export const getCart = (id_user) => {
 export const deleteCart = (data) => {
 	return {
 		type: 'DELETE_CART',
-		payload: axios.delete(`${IP}/cart?id_user=${data.id_user}&id_product=${data.id_product}`)
+		payload: axios.delete(`${IP}/cart/${data.id_user}?id_product=${data.id_product}`)
+	}
+}
+
+export const addCart = (data) => {
+	return {
+		type: 'ADD_CART',
+		payload: axios.post(`${IP}/cart/${data.id_user}?id_product=${data.id_product}&jumlah=${data.jumlah}`)
 	}
 }
