@@ -18,6 +18,7 @@ class AddSell extends Component {
             condition: 0,
             price: '',
             image: null,
+            imguri: null,
             radio: [
                 { label: 'new', condition: 0 },
                 { label: 'second', condition: 1 }
@@ -33,7 +34,7 @@ class AddSell extends Component {
         ImagePicker.launchCamera(options, (response) => {
             console.log(response)
             if (response.uri) {
-                this.setState({ image: response.uri })
+                this.setState({ image: response, imguri: response.uri})
                 setTimeout(() => {
                     console.log(this.state.image)
                 }, 500)
@@ -71,7 +72,7 @@ class AddSell extends Component {
                 'product_name': product_name,
                 'brand': brand,
                 'description': description,
-                'condition': condition,
+                'condition': 1,
                 'price': price,
                 'image': image
             }
@@ -169,7 +170,7 @@ class AddSell extends Component {
                             <Text>image</Text>
                             <ListItem>
                                 {
-                                    this.state.image && <Image source={{ uri: this.state.image }}
+                                    this.state.imguri && <Image source={{ uri: this.state.imguri }}
                                         style={{ height: 50, width: 50 }} />
                                 }
 
