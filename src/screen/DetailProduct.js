@@ -14,10 +14,13 @@ import {
 	TouchableWithoutFeedback
 } from 'react-native'
 
+import { getSeller } from '../public/action/user'
+import { connect } from 'react-redux'
+
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import EvilIcons from 'react-native-vector-icons/dist/EvilIcons';
-import Feather from 'react-native-vector-icons/dist/Feather';
+import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 
 import moment from 'moment'
@@ -28,7 +31,7 @@ const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 const screenWidth = Math.round(Dimensions.get('window').width);
 
-export default class DetailProduct extends Component {
+class DetailProduct extends Component {
 
 	constructor(props) {
 	    super(props);
@@ -48,6 +51,10 @@ export default class DetailProduct extends Component {
         this.setState({
             image: image
         })
+    }
+
+    async componentDidMount() {
+    	await this.props.dispatch(getSeller(this.props.navigation.state.params.username))
     }
 
 	_renderScrollViewContent() {
@@ -96,13 +103,13 @@ export default class DetailProduct extends Component {
 
 	    				<Icon style={{marginRight: 20}} name="inbox" size={17} color={'black'} />
 	    				<Text>
-	    					{this.props.navigation.state.params.category}
+	    					{this.props.navigation.state.params.category_name}
 	    				</Text>
 	    			</View>
 
 	    			<View style={{flexDirection: 'row', marginVertical: 10}}>
 
-	    				<Feather style={{marginRight: 20}} name="align-right" size={17} color={'black'} />
+	    				<FontAwesome5 style={{marginRight: 20}} name="align-right" size={17} color={'black'} />
 	    				<Text>
 	    					Atasan
 	    				</Text>
@@ -116,16 +123,41 @@ export default class DetailProduct extends Component {
 	    				</Text>
 	    			</View>
 	    		</View>
-				<Card/>
+
+	    		<View style={{padding: 15, backgroundColor: 'white', marginTop: 30,}}>
+					
+					<TouchableOpacity style={{flexDirection: 'row'}}>
+						<Image style={{
+							width: 70, 
+							height: 70,
+							marginRight: 20
+						}} source={{uri: this.props.seller.seller.image}} />
+						<View>
+							<Text style={{
+								color: '#4287f5',
+								fontWeight: 'bold'
+							}}>{this.props.seller.seller.username}</Text>
+							<View style={{flexDirection: 'row', marginTop: 2}}>
+								<FontAwesome5 name="smile-beam" size={18} color="green" />
+								<Text style={{marginLeft: 5}}>Sangat Responsif</Text>
+
+							</View>
+							<Text>Joined {moment(this.props.seller.seller.date_create).startOf('minutes').fromNow()}</Text>
+						</View>
+
+					</TouchableOpacity>
+
+				</View>
+				
+				<View style={{padding: 15, backgroundColor: 'white', marginTop: 30,}}>
+					<Card/>
+				</View>
 	    	</View>
 	    );
 	}
 
 
 	render() {
-
-		// Because of content inset the scroll value will be negative on iOS so bring
-    	// it back to 0.
 	    const scrollY = Animated.add(
 	      this.state.scrollY,
 	      Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0,
@@ -270,6 +302,16 @@ export default class DetailProduct extends Component {
 	}
 }
 
+
+const MapStateToProps = (state) => {
+	return {
+		seller: state.user
+	}
+}
+
+export default connect(MapStateToProps)(DetailProduct)
+
+
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
@@ -318,6 +360,7 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
+    backgroundColor: '#f5f5f5'
   },
   row: {
     height: 40,
