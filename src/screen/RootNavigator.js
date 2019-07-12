@@ -26,6 +26,7 @@ import sendEmail from './sendEmail';
 
 
 const AppStack = createStackNavigator({
+    login : {screen :Login},
     Home : {screen : Home},
     setting : {screen :Setting},
     profil : {screen :Profil},
@@ -34,7 +35,6 @@ const AppStack = createStackNavigator({
     wishlist : {screen :Wishlist},
     DetailProduct: {screen: DetailProduct},
     homeAuth : {screen : HomeAuth},
-    login : {screen :Login},
     register : {screen : Register},
     search: {screen :Search},
     category : {screen :Category},

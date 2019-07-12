@@ -17,7 +17,9 @@ import {
 
 import { getSeller } from '../public/action/user'
 import { addCart } from '../public/action/cart'
-import { connect } from 'react-redux'
+
+import { createWishlist } from '../public/action/wishlist'
+import { connect } from 'react-redux'	
 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
@@ -237,7 +239,17 @@ class DetailProduct extends Component {
 		        </Animated.ScrollView>
 
 		        <View style={styles.actionBottom}>
-		        	<TouchableOpacity style={styles.buttonAction}>
+
+		        	<TouchableOpacity style={styles.buttonAction} onPress={() => {
+
+		        		AsyncStorage.getItem('id_user', (error, result) => {
+	        				if (result) {
+	        					this.props.dispatch(createWishlist(result, this.props.navigation.state.params.id_product))
+	        					alert('Success add to wishlist')
+	        				}
+	        			})
+	        			
+		        	}}>
 		        		<Icon name="hearto" size={18} color="black" />
 		        	</TouchableOpacity>
 
@@ -261,7 +273,21 @@ class DetailProduct extends Component {
 
 
 
-		        	<TouchableOpacity style={[styles.buttonAction, {backgroundColor: '#4287f5', borderRadius: 5}]} onPress={() => this.props.navigation.navigate('chart')}>
+		        	<TouchableOpacity style={[styles.buttonAction, {backgroundColor: '#4287f5', borderRadius: 5}]} onPress={() => {
+		        		AsyncStorage.getItem('id_user', (error, result) => {
+	        				if (result) {
+	        					this.props.dispatch(addCart({
+	        						id_user: result,
+	        						id_product: this.props.navigation.state.params.id_product
+	        					}))
+	        					alert('Success add to Cart')
+	        					setTimeout(() => {
+	        						this.props.navigation.navigate('Cart')
+	        					}, 500)
+	        				}
+	        			})
+
+		        	}}>
 		        		<Text style={{fontSize: 18, color: 'white'}}>BELI</Text>
 		        	</TouchableOpacity>
 		        </View>
