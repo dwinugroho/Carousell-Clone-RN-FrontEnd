@@ -117,6 +117,8 @@ class Card extends Component {
     }
 
     render() {
+        
+
         return (
             <View>
                 <FlatList
@@ -136,7 +138,8 @@ class Card extends Component {
 
 const MapStateToProps = (state) => {
     return {
-        product : state.product
+        product : state.product,
+        user: state.user
     }
 }
 

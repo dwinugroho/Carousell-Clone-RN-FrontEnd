@@ -25,6 +25,26 @@ wishlist = (state = initialState, action) => {
               isError: false,
               data: action.payload.data
             }
+
+        case "DELETE_WISHLIST_PENDING" :
+            return {
+              ...state,
+              isLoading: true,
+              isError: false
+            }
+        case "DELETE_WISHLIST_REJECTED" :
+            return {
+              ...state,
+              isLoading: false,
+              isError: true
+            }
+        case "DELETE_WISHLIST_FULFILLED" :
+            return {
+              ...state,
+              isLoading: false,
+              isError: false,
+              data: action.payload.data
+            }
       default:
           return state;
     }

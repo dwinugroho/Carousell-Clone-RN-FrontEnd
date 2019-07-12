@@ -5,7 +5,6 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import ImagePicker from 'react-native-image-picker';
 
 import {getUser} from '../public/action/user'
-
 import { connect } from 'react-redux'
 
 
