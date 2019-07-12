@@ -25,7 +25,7 @@ import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 
 import moment from 'moment'
 import Card from '../components/Card';
-
+import withNavigation from 'react-navigation'
 const HEADER_MAX_HEIGHT = 500;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
@@ -150,7 +150,7 @@ class DetailProduct extends Component {
 				</View>
 				
 				<View style={{padding: 15, backgroundColor: 'white', marginTop: 30,}}>
-					<Card/>
+					<Card navigation={this.props.navigation}/>
 				</View>
 	    	</View>
 	    );
