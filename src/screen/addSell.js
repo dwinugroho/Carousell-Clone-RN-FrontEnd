@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native'
+import { View, TextInput, TouchableOpacity, StyleSheet, Image, Alert, Picker, AsyncStorage } from 'react-native'
 import HeaderBack from '../components/headerBack';
 import { Container, Content, List, ListItem, Text } from 'native-base';
 import RadioForm from 'react-native-simple-radio-button'
@@ -15,17 +15,23 @@ class AddSell extends Component {
             product_name: '',
             brand: '',
             description: '',
-            condition: 0,
+            condition: 1,
             price: '',
             image: null,
             imguri: null,
-            radio: [
-                { label: 'new', condition: 0 },
-                { label: 'second', condition: 1 }
-            ]
+            id_user: ''
         }
     }
 
+    componentDidMount = () => {
+        AsyncStorage.getItem('id_user', (error, result) => {
+            if (result) {
+                this.setState({id_user : result})
+            } else {
+                alert('gagal get User')
+            }
+        })
+    }
 
     handleImage = () => {
         const options = {
@@ -61,9 +67,9 @@ class AddSell extends Component {
     }
 
     handleSubmit = () => {
-        const { category, product_name, brand, description, condition, price, image, } = this.state
+        const { category, product_name, brand, description, condition, price, image, id_user } = this.state
         if (this.state.product_name !== '' && this.state.brand !== '' &&
-            this.state.description !== '' &&
+            this.state.description !== '' && this.state.condition !== '' &&
             this.state.price !== '') {
             // console.log('this.state')
             // console.log(this.state)
@@ -72,14 +78,15 @@ class AddSell extends Component {
                 'product_name': product_name,
                 'brand': brand,
                 'description': description,
-                'condition': 1,
+                'condition': condition,
                 'price': price,
-                'image': image
+                'image': image,
+                'id_user': id_user
             }
             // console.log('Data')
             // console.log(Data)
             this.props.dispatch(postProductSell(Data));
-            // this.props.navigation.pop()
+            this.props.navigation.navigate('Home')
             return true
         } else {
             Alert.alert("warning", 'data please insert data in from')
@@ -124,16 +131,14 @@ class AddSell extends Component {
                             <Text>condition</Text>
                         </ListItem>
                         <ListItem>
-                            <RadioForm
-                                radio_props={this.state.radio}
-                                buttonSize={15}
-                                animation={true} s
-                                borderWidth={1}
-                                initial={0}
-                                onPress={(value) => this.setState({ condition: value })}
-                                value={this.state.condition}
-                                onSelectionChange={(value) => { this.setState({ condition: value }) }}
-                            />
+                        <Picker
+                            selectedValue={this.state.condition}
+                            style={{height: 50, width: 100}}
+                            onValueChange={(value) => this.setState({ condition: value })
+                        }>
+                            <Picker.Item label="New" value="1" />
+                            <Picker.Item label="Old" value="2" />
+                        </Picker>
                         </ListItem>
                         <ListItem itemDivider>
                             <Text>price</Text>
@@ -147,6 +152,7 @@ class AddSell extends Component {
                                 autoCorrect={false}
                                 editable={true}
                                 maxLength={40}
+                                keyboardType='numeric'
                                 multiline={false} />
                         </ListItem>
                         <ListItem itemDivider>
