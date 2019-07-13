@@ -19,8 +19,6 @@ export const postProductSell = (data) => {
         Data.append('product_name', data.product_name);
         Data.append('brand', data.brand);
         Data.append('description', data.description);
-        Data.append('date_created', "2019-07-10");
-        Data.append('id_wishlist', "1");
         Data.append('id_sub_category', "1");
         Data.append('id_user', "2");
         Data.append('image', {

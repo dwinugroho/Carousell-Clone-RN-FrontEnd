@@ -14,3 +14,9 @@ export const getSeller = (username) => {
         payload: axios.get(`${IP}/users?username=${username}`)
     }
 }
+export const updateSeller = (id,data) => {
+    return {
+        type: 'UPDATE_SELLER',
+        payload: axios.patch(`${IP}/users/${id}`,data)
+    }
+}
