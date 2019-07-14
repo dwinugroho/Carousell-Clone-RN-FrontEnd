@@ -68,6 +68,7 @@ class User extends Component {
   }
   render() {
     return (
+      
       <ScrollView style={{ flex: 1, backgroundColor: '#FFFFFF', }}
         refreshControl={
           <RefreshControl

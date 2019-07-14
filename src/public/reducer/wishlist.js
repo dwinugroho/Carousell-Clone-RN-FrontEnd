@@ -43,7 +43,7 @@ wishlist = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                data : [action.payload.data.data,...state.data]
+                data : action.payload.data.data,...state.data
             }
         case "DELETE_WISHLIST_PENDING" :
             return {
