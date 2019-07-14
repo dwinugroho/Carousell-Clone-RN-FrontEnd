@@ -62,10 +62,10 @@ wishlist = (state = initialState, action) => {
               ...state,
               isLoading: false,
               isError: false,
-              data: state.data.filter(wishlist => {
-                        wishlist.id !== action.payload.data.data
-                    })
-
+              // data : action.payload.data.data
+              // data: state.data.filter(val => (
+              //   action.payload.data.data.id_product !== val.id_product
+            // ))
             }
       default:
           return state;
