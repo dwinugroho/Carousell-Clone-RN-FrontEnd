@@ -28,7 +28,8 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          selected: ""
+          selected: "",
+          address: 'Jl Kaliurang Km 5, Jalan Pogung Baru No.9, Pogung Kidul, Sinduadi, Mlati, Sleman Regency, Special Region of Yogyakarta 55284'
         };
       }
     onValueChange(value: string) {
@@ -43,7 +44,27 @@ class Cart extends Component {
                 this.props.dispatch(getCart(result))
             }
         })
+    }
 
+    sendInput(id_cart){
+        console.warn(id_cart)
+
+    }   
+
+    countPrice = () => {
+
+        const arr = []
+        this.props.cart.data.map(data => arr.push(data.total_price))
+
+        const countPrice = arr.reduce((x, y) => (x + y))
+
+        const   number = countPrice;
+        
+        const   reverse = number.toString().split('').reverse().join('');
+        const   ribuan  = reverse.match(/\d{1,3}/g);
+        const   result  = ribuan.join('.').split('').reverse().join('');
+
+        return result
     }
 
 
@@ -72,9 +93,18 @@ class Cart extends Component {
                                 </Body>
                             </ListItem>
                             <ListItem>
-                              <Text>Jl Kaliurang Km 5, Jalan Pogung Baru No.9, Pogung Kidul, Sinduadi, Mlati, Sleman Regency, Special Region of Yogyakarta 55284</Text>
+                              <Text>{this.state.address}</Text>
                             </ListItem>
                         </List>
+                    </View>
+                    <View style={{paddingHorizontal: 15, marginVertical: 10}}>
+                        <Text>Total harga:  
+                        </Text>
+                        <Text style={{fontSize: 25, fontWeight: 'bold', marginLeft: 10}}>
+                            Rp. {
+                                this.props.cart.data.length === 0 ? 0 : this.countPrice()
+                            }
+                        </Text>
                     </View>
                     <View style={{paddingBottom:20}}>
                         <Picker
@@ -85,16 +115,16 @@ class Cart extends Component {
                           onValueChange={this.onValueChange.bind(this)}
                         >
                           <Picker.Item label="---- Pilih Metode Pembayaran ----" value="" />
-                          <Picker.Item label="Transfer BRI" value="key0" />
-                          <Picker.Item label="Transfer BNI" value="key1" />
-                          <Picker.Item label="Transfer BCA" value="key2" />
-                          <Picker.Item label="Indomart" value="key3" />
-                          <Picker.Item label="Alfamart" value="key4" />
+                          <Picker.Item label="Transfer BRI" value="1" />
+                          <Picker.Item label="Transfer BNI" value="2" />
+                          <Picker.Item label="Transfer BCA" value="3" />
+                          <Picker.Item label="Indomart" value="4" />
+                          <Picker.Item label="Alfamart" value="5" />
                         </Picker>
                     </View>
                     <View>
-                        <Button block danger style={{height:60}}>
-                            <Text style={styles.textCheckout}>Checkout</Text>
+                        <Button block danger style={{height:60}} >
+                            <Text style={styles.textCheckout} onPress={()=> {this.sendInput(this.props.cart.data.map(cart => cart.id_cart)) }}>Checkout</Text>
                         </Button>
                     </View>
                 </ScrollView>

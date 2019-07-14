@@ -41,7 +41,7 @@ export default cart = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                data: [action.payload.data.data,...state.data]
+                // data: action.payload.data.data,...state.data
             }
         case "DELETE_CART_PENDING":
             return {
