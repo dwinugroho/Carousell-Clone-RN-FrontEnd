@@ -2,11 +2,11 @@ const initialState = {
     data: [],
     isLoading: false,
     isError: false,
-    subCategory:[]
+    subCategory: []
 }
 
 export default cart = (state = initialState, action) => {
-	switch (action.type) {
+    switch (action.type) {
         case "GET_CART_PENDING":
             return {
                 ...state,
@@ -23,9 +23,9 @@ export default cart = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                data: action.payload.data.data
+                data: action.payload.data.data 
             }
-        case "ADD_CART_PENING":
+        case "ADD_CART_PENDING":
             return {
                 ...state,
                 isLoading: true
@@ -41,8 +41,9 @@ export default cart = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
+                // data: action.payload.data.data
             }
-        case "DELETE_CART_PENING":
+        case "DELETE_CART_PENDING":
             return {
                 ...state,
                 isLoading: true
