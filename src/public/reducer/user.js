@@ -62,7 +62,7 @@ user = (state = initialState, action) => {
               ...state,
               isLoading: false,
               isError: false,
-              data: action.payload.data.data
+              seller: action.payload.data.data
             }
         default:
         	return state;
