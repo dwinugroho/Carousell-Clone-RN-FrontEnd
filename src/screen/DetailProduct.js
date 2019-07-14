@@ -46,16 +46,26 @@ class DetailProduct extends Component {
 		      Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0,
 		    ),
 		    refreshing: false,
-		    image: null,
+			image: null,
+			price: null
 	    };
 	}
 
 
     componentWillMount() {
-        const image = JSON.parse(this.props.navigation.state.params.image)
+		const image = JSON.parse(this.props.navigation.state.params.image)
+		const   bilangan = this.props.navigation.state.params.price;
+        
+        const   reverse = bilangan.toString().split('').reverse().join('');
+        const   ribuan  = reverse.match(/\d{1,3}/g);
+        const   result  = ribuan.join('.').split('').reverse().join('');
+
+
         this.setState({
-            image: image
+            image: image,
+            price: result
         })
+		
     }
 
     async componentDidMount() {
@@ -281,9 +291,9 @@ class DetailProduct extends Component {
 	        						id_product: this.props.navigation.state.params.id_product
 	        					}))
 	        					alert('Success add to Cart')
-	        					setTimeout(() => {
+	        					
 	        						this.props.navigation.navigate('Cart')
-	        					}, 500)
+	        					
 	        				}
 	        			})
 

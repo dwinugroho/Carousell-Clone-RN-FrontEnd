@@ -29,40 +29,16 @@ class User extends Component {
       AsyncStorage.getItem('username', (error, result) => {
           if (result) {
               this.props.dispatch(getUser(result))
-          } else {
-              alert('gagal get User')
           }
       })
 
   }
-  handleImage = async () => {
-    const options = {
-        mediaType : 'photo',
-        noData : true
-      };
-    ImagePicker.showImagePicker(options, (response) => {
-        console.log('Response = ', response);
-
-        if (response.didCancel) {
-            console.log('User cancelled image picker');
-        } else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
-        } else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton);
-        } else {
-            const source = { uri: response.uri };
-            this.setState({
-                avatarSource: source,
-            })
-        }
-     })
-}
   render() {
     return (
       <ScrollView style={{flex :1,backgroundColor: '#FFFFFF',}}>
           <Image style={{height:90,width:'100%'}} source={require('../assets/2.jpg')}/>
         <View style={{ flexDirection: 'row',marginTop: -40,}}>
-          <TouchableOpacity style={{ flex: 3 ,paddingLeft: 10,}} onPress={this.handleImage}>
+          <TouchableOpacity style={{ flex: 3 ,paddingLeft: 10,}}>
             {
               this.props.user.data.data == undefined ?
                 <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={require('../assets/1.jpg')} />

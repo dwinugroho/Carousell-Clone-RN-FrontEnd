@@ -70,7 +70,8 @@ class AddSell extends Component {
         const { category, product_name, brand, description, condition, price, image, id_user } = this.state
         if (this.state.product_name !== '' && this.state.brand !== '' &&
             this.state.description !== '' && this.state.condition !== '' &&
-            this.state.price !== '') {
+            this.state.price !== ''&&
+            this.state.image !== '') {
             // console.log('this.state')
             // console.log(this.state)
             let Data = {
