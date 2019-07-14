@@ -6,12 +6,8 @@ import Entypo from 'react-native-vector-icons/dist/Entypo'
 
 import {createWishlist, getWishlist} from '../public/action/wishlist';
 import CardWishlist from '../components/CardWishlist'
-
 import axios from 'axios';
-
 import { connect } from 'react-redux';
-
-
 
 
 
@@ -40,8 +36,6 @@ componentDidMount = () => {
     AsyncStorage.getItem('id_user', (error, result) => {
           if (result) {
               this.props.dispatch(getWishlist(result))
-          } else {
-              alert('gagal get User')
           }
       })
 }
