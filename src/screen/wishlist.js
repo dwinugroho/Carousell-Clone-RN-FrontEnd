@@ -68,12 +68,10 @@ componentDidMount = () => {
                     renderItem={({ item, index }) => {
                         
                         return (
-                            <CardWishlist item={item} index={index} />
-                            )
-                        }}
-                        />
-                    }
-            
+                            <CardWishlist item={item} index={index} navigation={this.props.navigation}/>
+                        )
+                    }}
+                />
             </View>
             
         )

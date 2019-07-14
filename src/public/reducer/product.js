@@ -60,7 +60,7 @@ export default product = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                post: action.payload.data.data
+                product: action.payload.data.data,...state.product
             }
         default:
             return state

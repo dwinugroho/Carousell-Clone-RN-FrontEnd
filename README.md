@@ -6,6 +6,8 @@
   We Built with React Native.
 </p>
 
+## RELATED PROJECT
+express js (https://github.com/DanyAdhiPrabowo/Carousell-Clone-Backend.git)
 
 ## Introduction
 Carousell is a mobile marketplace application that helps us to sell our things as simple as taking photos. Carousell has a mission to make online shopping accessible to everyone while creating a safe, friendly and mutually supportive community!
@@ -24,6 +26,16 @@ Carousell can be downloaded for free on iOS or Android devices by visiting the A
 4. Write "npm install" and wait for the process to complete
 5. Write "react-native run-android", then press enter.
 6. Wait for the process to complete, then the clone carousell application will be installed and open on your mobile
+
+## screnshot application
+<p align='center'>
+  <span>
+   <img src='https://user-images.githubusercontent.com/43402837/61184360-0f541b00-a677-11e9-8a4b-7e8aeb6d44ae.jpg' width=200/>
+   <img src='https://user-images.githubusercontent.com/43402837/61184362-19761980-a677-11e9-8a57-000f590c0985.jpg' width=200/>
+   <img src='https://user-images.githubusercontent.com/43402837/61184366-1ed36400-a677-11e9-878c-a2535e7ae762.jpg' width=200/>
+    <img src='https://user-images.githubusercontent.com/43402837/61184370-24c94500-a677-11e9-830a-e6633f7c3482.jpg' width=200/>
+  </span>
+</p>
 
 ## Contributors
 <center>

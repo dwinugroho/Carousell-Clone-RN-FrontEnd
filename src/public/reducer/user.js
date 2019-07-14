@@ -43,7 +43,7 @@ user = (state = initialState, action) => {
               ...state,
               isLoading: false,
               isError: false,
-              seller: action.payload.data.data
+              data: action.payload.data.data
             }
         case "UPDATE_SELLER_PENDING" :
             return {

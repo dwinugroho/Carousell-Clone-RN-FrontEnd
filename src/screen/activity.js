@@ -1,9 +1,95 @@
 import React, { Component } from 'react';
-import { View } from 'react-native'
+import { View, Text, Image, StyleSheet } from 'react-native'
+import { Container, Content, Card, CardItem, Left, Body, Right, Item, List, ListItem, Thumbnail,  } from 'native-base'
 export default class Activity extends Component {
   render() {
     return (
-      <View></View>
+    <Container>	
+      	<Content>
+	         <Card>
+	            <ListItem avatar noBorder style={styles.seller}>
+	              	<Left>
+	                	<Thumbnail source={{ uri: 'https://jasamedia.co.id/images/t2.jpg' }} style={styles.imageThumbnail}/>
+	                	<Text> danyadhi</Text>
+	              	</Left>
+	              	<Body>
+	              		<Text style={styles.textDone}>Selesai</Text>
+	              	</Body>
+	            </ListItem>
+	            <CardItem>
+		                <Image
+		                	 style={{width: 70, height: 70, resizeMode: 'cover'}}
+		                	source={{uri: "https://id-test-11.slatic.net/original/1a41141c912c0b5e8eb635b76e4da43a.jpg"}}
+		                />
+	            	<Body style={styles.textCheckout}>
+
+		                <Text style={styles.textProduct} numberOfLines={1} > Macbook Air 2018 13" Inch, 128GB / 8GB Grey, Gold, Silver MREE2 MRE82 - GOLD </Text>
+                		<Text style={styles.qty} >Qty : x2</Text>
+		                <Text >Rp 90.000</Text>
+
+	            	</Body>
+	            </CardItem>
+	            <View
+				  style={{
+				    borderBottomColor: '#BEBEBE',
+				    borderBottomWidth: 1,
+				    marginHorizontal : '7%'
+				  }}
+				/>
+	            <Right style={styles.totalPrice}>
+		                <Text style={styles.textTotalPrice}>
+		                	<Text> Total bayar </Text>
+		                	<Text style={{color:'coral'}}> Rp 180.000 </Text>
+		                </Text> 
+	            </Right>
+	         </Card>
+        </Content>
+    </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+	seller:{
+		marginBottom: 10,
+	    marginTop:0,	
+	},
+	imageThumbnail:{
+		width:25, 
+		height:25
+	},
+	textDone:{
+		textAlign:'right', 
+		alignSelf: 'stretch',
+		paddingHorizontal:'5%',
+		color:'red'
+	},
+    textCheckout : {
+    	paddingHorizontal:10,
+    	// paddingVertical:10
+    },
+    textProduct:{
+    	fontSize: 17,
+    	color:'black'
+    },
+    qtyParent:{
+    	backgroundColor:'skyblue'
+    },
+    qty:{
+    	paddingVertical:5,
+    	textAlign:'right',
+    	fontSize:11
+    },
+    totalPrice:{
+    	textAlign: 'right', 
+    	alignSelf: 'stretch',
+    	paddingBottom:15,
+    	paddingTop:7,
+    	paddingLeft:0,
+    	paddingRight:'7%',
+    },
+    textTotalPrice:{
+    	// fontSize:12,
+    	fontWeight:'bold'
+    }
+})

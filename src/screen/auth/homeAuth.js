@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View ,StyleSheet} from 'react-native'
+import { Text, View ,StyleSheet,AsyncStorage} from 'react-native'
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class HomeAuth extends Component {
+    componentWillMount() {
+        AsyncStorage.getItem('Token', (error, result) => {
+            if (result) {
+                this.props.navigation.navigate('Home')
+            }
+        })
+    }
     render() {
         return (
             <View style={{flex :1,paddingHorizontal: 17}}>

@@ -48,7 +48,7 @@ login = async (state = initialState, action) => {
           ...state,
           isLoading: false,
           isError: false,
-          data: action.payload.data.data,
+          data: [action.payload.data.data,...state.data]
         };
         case "EDIT_PASWORD":
             return {
