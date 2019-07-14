@@ -30,7 +30,14 @@ class CardWishlist extends Component {
 
 	delete = (id_user, id_product) => {
 	    this.props.dispatch(deleteWishlist(id_user, id_product));
-	}	
+	}
+
+	maintenance(){
+		Alert.alert(
+	      'Sorry!',
+	      'This feature are not available right now',
+	    );
+	}
 
 	render() {
 		return(
@@ -46,7 +53,7 @@ class CardWishlist extends Component {
 	                        source={{ uri: this.state.image[0] }}
 	                    />
 	                </View>
-	                <Text style={{marginHorizontal: 5, marginTop: 5, color: 'black'}}>{this.props.item.product_name}</Text>
+	                <Text style={{marginHorizontal: 5, marginTop: 5, color: 'black'}} numberOfLines={2}>{this.props.item.product_name}</Text>
 	                <Text style={{marginHorizontal: 5, color: 'black'}}>Rp {this.props.item.price}</Text>
 	            </TouchableOpacity>
 
