@@ -60,6 +60,24 @@ export default cart = (state = initialState, action) => {
                 isError: false,
                 data: state.data.filter(data => data.id_product !== action.payload.data.data.id_product)
             }
+
+        case "CHECKOUT_PENDING":
+            return {
+                ...state,
+                isLoading: true
+            }
+        case "CHECKOUT_REJECTED":
+            return {
+                ...state,
+                isLoading: false,
+                isError: true
+            }
+        case "CHECKOUT_FULFILLED":
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+            }
         default:
             return state
     }
