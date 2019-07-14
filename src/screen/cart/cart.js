@@ -8,6 +8,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,ActivityIndicator,RefreshControl
+   
 } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
@@ -17,7 +18,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { List, ListItem, Left, Body, Picker, Icon, Button } from 'native-base'
 
 import { connect } from 'react-redux'
-import { getCart } from '../../public/action/cart'
+import { getCart, checkout } from '../../public/action/cart'
 
 import CardCart from './cardCart'
 
@@ -60,9 +61,33 @@ class Cart extends Component {
         })
     }
 
-    sendInput(id_cart){
-        console.warn(id_cart)
+    sendInput(cart){
+        
+        if (this.state.selected !== '' && this.state.selected !== 0) {
 
+            AsyncStorage.getItem('id_user', (err, result) => {
+                if (result) {
+                    const orderCode = Math.random().toString(36).substring(2, 15)
+                    const paymentId = this.state.selected
+
+                    cart.map(cart => {
+                        return this.props.dispatch(checkout({
+                            id_order: orderCode,
+                            id_user: result,
+                            id_product: cart.id_product,
+                            total_product: cart.total_product,
+                            id_address: 1,
+                            total_price: cart.total_price,
+                            id_payment_method: paymentId
+                        }))
+                    })
+                }
+            })
+
+        } else {
+            alert('please select payment')
+        }
+        
     }   
 
     countPrice = () => {
@@ -149,7 +174,11 @@ class Cart extends Component {
                     </View>
                     <View>
                         <Button block danger style={{height:60}} >
-                            <Text style={styles.textCheckout} onPress={()=> {this.sendInput(this.props.cart.data.map(cart => cart.id_cart)) }}>Checkout</Text>
+                            <Text style={styles.textCheckout} onPress={()=> {
+                                this.sendInput(
+                                    this.props.cart.data.map(cart => cart),
+                                ) 
+                            }}>Checkout</Text>
                         </Button>
                     </View>
                 </ScrollView>

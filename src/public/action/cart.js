@@ -24,7 +24,7 @@ export const addCart = (data) => {
 
 export const checkout = (data) => {
 	return {
-		type: 'ADD_CART',
-		payload: axios.post(`${IP}/checkout/`)
+		type: 'CHECKOUT',
+		payload: axios.post(`${IP}/checkout/`, data)
 	}
 }
