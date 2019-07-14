@@ -21,3 +21,10 @@ export const addCart = (data) => {
 		payload: axios.post(`${IP}/cart/${data.id_user}?id_product=${data.id_product}&jumlah=${data.jumlah}`)
 	}
 }
+
+export const checkout = (data) => {
+	return {
+		type: 'ADD_CART',
+		payload: axios.post(`${IP}/checkout/`)
+	}
+}
