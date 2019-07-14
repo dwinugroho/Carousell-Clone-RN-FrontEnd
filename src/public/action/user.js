@@ -20,3 +20,20 @@ export const updateSeller = (id,data) => {
         payload: axios.patch(`${IP}/users/${id}`,data)
     }
 }
+
+export const postPhotoSeller = (data) => {
+       
+    let Data = new FormData();
+    Data.append('image', {
+       'name' : data.image.fileName,
+       'uri' : data.image.uri,
+       'type' : 'image/jpeg'
+    });
+    console.log(data)
+    console.log(Data)
+return {
+    type: 'UPDATE_PHOTO_SELLER',
+    payload: axios.post(`${IP}/users/${id}`,Data)
+        
+}
+}

@@ -15,8 +15,8 @@ class Profil extends Component {
             lastname: this.props.user.data.data.lastname,
             email: this.props.user.data.data.email,
             hp: this.props.user.data.data.hp,
+            gender : this.props.user.data.data.gender.toString(),
             // birth: this.props.user.data.data.birth,
-            // gender : this.props.user.data.data.gender
         };
     }
     updateUser = () => {
@@ -28,26 +28,29 @@ class Profil extends Component {
                 lastname: this.state.lastname,
                 email: this.state.email,
                 hp: this.state.hp,
+                gender: this.state.gender,
                 // birth: this.state.birth,
-                // gender: this.state.gender
             })
             )
             this.props.navigation.goBack()
         }
         )
     }
-    // showDateTimePicker = () => {
-    //     this.setState({ isDateTimePickerVisible: true });
-    // };
+    showDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: true });
+    };
 
-    // hideDateTimePicker = () => {
-    //     this.setState({ isDateTimePickerVisible: false });
-    // };
+    hideDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: false });
+    };
 
-    // handleDatePicked = date => {
-    //     console.log("A date has been picked: ", date);
-    //     this.hideDateTimePicker();
-    // };
+    handleDatePicked = date => {
+        console.log("A date has been picked: ", date);
+        this.setState({
+            birth : "/"+date+"/"
+        })
+        this.hideDateTimePicker();
+    };
 
     componentDidMount() {
         AsyncStorage.getItem('username', (error, result) => {
@@ -129,32 +132,23 @@ class Profil extends Component {
                             maxLength={40}
                             multiline={false} />
                     </View>
-                    {/* <View style={styles.head}>
+                    <View style={styles.head}>
                         <Picker
                             selectedValue={this.state.gender}
                             style={{ height: 50, width: 100 }}
-                            onValueChange={(itemValue, itemIndex) =>
-                                this.setState({ gender: itemValue })
-                            }>
-                            <Picker.Item label="male" value={1} />
-                            <Picker.Item label="female" value={2} />
+                            onValueChange={(Value) => this.setState({ gender:Value }) }>
+                            <Picker.Item label="male" value= '1' />
+                            <Picker.Item label="female" value= '2' />
                         </Picker>
                     </View>
-                    <View style={styles.head}>
+                    {/* <View style={styles.head}>
                         <Text style={styles.Text}>enter date of birth</Text>
                         <Button title="choose date of birth" onPress={this.showDateTimePicker} />
                         <DateTimePicker
                             isVisible={this.state.isDateTimePickerVisible}
                             onConfirm={this.handleDatePicked}
                             onCancel={this.hideDateTimePicker}
-                            style={{ backgroundColor: 'red', }}
-                            onChangeText={(value) => { this.setState({ birth: value }) }}
-                            returnKeyType='next'
-                            value={this.state.birth}
-                            autoCorrect={false}
-                            editable={true}
-                            maxLength={40}
-                            multiline={false} />
+                            />
                     </View> */}
                     <View style={{ paddingHorizontal: 21, paddingTop: 30 }}>
                         <TouchableOpacity style={styles.button} onPress={this.updateUser}>
@@ -202,6 +196,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
+    },
+    TextButton :{
+        backgroundColor: 'black',
     }
 
 })
