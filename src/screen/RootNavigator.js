@@ -26,15 +26,15 @@ import sendEmail from './sendEmail';
 
 
 const AppStack = createStackNavigator({
-    login : {screen :Login},
     Home : {screen : Home},
+    homeAuth : {screen : HomeAuth},
+    login : {screen :Login},
     setting : {screen :Setting},
     profil : {screen :Profil},
     Cart : {screen :Cart},
     changePassword : {screen : ChangePassword},
     wishlist : {screen :Wishlist},
     DetailProduct: {screen: DetailProduct},
-    homeAuth : {screen : HomeAuth},
     register : {screen : Register},
     search: {screen :Search},
     category : {screen :Category},

@@ -126,7 +126,9 @@ class Card extends Component {
     }
 
     render() {
-        
+        console.log(this.props.product.product)
+        console.log('batas')
+        console.log(this.props.product.post)
 
         return (
             <View>
