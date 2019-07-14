@@ -5,7 +5,6 @@ import {
     Image,
     Button, 
     AsyncStorage,
-    FlatList,
     StyleSheet,
     TouchableOpacity,
 } from 'react-native'
@@ -63,7 +62,7 @@ class cardCart extends Component {
                         source={{uri: this.state.image[0]}}
                     />
                 </View>
-                <View style={{marginLeft: 20, marginVertical: 10,}}>
+                <View style={{marginLeft: 20, marginVertical: 10,flex :1}}>
                     <Text style={{fontSize: 17, color: 'black'}}>{this.props.item.product_name}</Text>
 
                     <View style={{marginTop: 10, flexDirection: 'row'}}>

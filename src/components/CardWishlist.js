@@ -2,37 +2,37 @@ import React, { Component } from 'react'
 import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet,TouchableWithoutFeedback, Alert, AsyncStorage } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/AntDesign'
 import Entypo from 'react-native-vector-icons/dist/Entypo'
-
-import {deleteWishlist} from '../public/action/wishlist';
-
+import {deleteWishlist,getWishlist} from '../public/action/wishlist';
 import axios from 'axios';
-
 import { connect } from 'react-redux';
 
 
-
 class CardWishlist extends Component {
-
 	constructor() {
 		super()
 		this.state = {
 			image: ''
 		}
 	}
-
 	componentWillMount() {
 		const   image = JSON.parse(this.props.item.image)
-
 		this.setState({
             image: image,
         })
 	}
 
 	delete = (id_user, id_product) => {
-	    this.props.dispatch(deleteWishlist(id_user, id_product));
-	}	
-
+		this.props.dispatch(deleteWishlist(id_user, id_product));
+		AsyncStorage.getItem('id_user', (error, result) => {
+            if (result) {
+                this.props.dispatch(getWishlist(result))
+            }
+    })
+		
+	}
 	render() {
+		console.log('this.props.data.item')
+		console.log(this.props.item)
 		return(
 			<View style={{flex :1, margin: 10, borderRadius: 7, borderWidth: 2, borderColor: '#f5f5f5'}}>
 			
@@ -90,7 +90,6 @@ const MapStateToProps = (state) => {
 		wishlist: state.wishlist
 	}
 }
-
 export default connect(MapStateToProps)(CardWishlist)
 
 
