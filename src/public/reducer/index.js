@@ -7,7 +7,7 @@ import user from './user'
 import wishlist from './wishlist'
 import cart from './cart'
 import forgetPass from './forgeetPass'
-
+import Activity from './activity'
 const Appreducer = combineReducers({
     product,
     login,
@@ -15,7 +15,8 @@ const Appreducer = combineReducers({
     user,
     wishlist,
     cart,
-    forgetPass
+    forgetPass,
+    Activity
 })
 
 export default Appreducer

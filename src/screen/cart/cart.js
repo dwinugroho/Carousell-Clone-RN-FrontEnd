@@ -83,7 +83,7 @@ class Cart extends Component {
                     })
                 }
             })
-
+            this.props.navigation.navigate('Home')
         } else {
             alert('please select payment')
         }
@@ -173,13 +173,13 @@ class Cart extends Component {
                         </Picker>
                     </View>
                     <View>
-                        <Button block danger style={{height:60}} >
+                        <TouchableOpacity style={{height:60,backgroundColor: 'red',justifyContent: 'center',alignItems: 'center',bottom : 10}}>
                             <Text style={styles.textCheckout} onPress={()=> {
                                 this.sendInput(
                                     this.props.cart.data.map(cart => cart),
                                 ) 
                             }}>Checkout</Text>
-                        </Button>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
                 }
