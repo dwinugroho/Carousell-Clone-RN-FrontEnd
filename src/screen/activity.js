@@ -1,95 +1,77 @@
-import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native'
-import { Container, Content, Card, CardItem, Left, Body, Right, Item, List, ListItem, Thumbnail,  } from 'native-base'
-export default class Activity extends Component {
-  render() {
-    return (
-    <Container>	
-      	<Content>
-	         <Card>
-	            <ListItem avatar noBorder style={styles.seller}>
-	              	<Left>
-	                	<Thumbnail source={{ uri: 'https://jasamedia.co.id/images/t2.jpg' }} style={styles.imageThumbnail}/>
-	                	<Text> danyadhi</Text>
-	              	</Left>
-	              	<Body>
-	              		<Text style={styles.textDone}>Selesai</Text>
-	              	</Body>
-	            </ListItem>
-	            <CardItem>
-		                <Image
-		                	 style={{width: 70, height: 70, resizeMode: 'cover'}}
-		                	source={{uri: "https://id-test-11.slatic.net/original/1a41141c912c0b5e8eb635b76e4da43a.jpg"}}
-		                />
-	            	<Body style={styles.textCheckout}>
+import React, { Component } from 'react'
+import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet, TouchableWithoutFeedback, Alert, AsyncStorage, RefreshControl, ActivityIndicator } from 'react-native'
+import HeaderBack from '../components/headerBack'
+import Icon from 'react-native-vector-icons/dist/AntDesign'
+import Entypo from 'react-native-vector-icons/dist/Entypo'
 
-		                <Text style={styles.textProduct} numberOfLines={1} > Macbook Air 2018 13" Inch, 128GB / 8GB Grey, Gold, Silver MREE2 MRE82 - GOLD </Text>
-                		<Text style={styles.qty} >Qty : x2</Text>
-		                <Text >Rp 90.000</Text>
+import { connect } from 'react-redux';
+import { getActivity } from '../public/action/activity';
+import CardActivity from '../components/cardActivity'
 
-	            	</Body>
-	            </CardItem>
-	            <View
-				  style={{
-				    borderBottomColor: '#BEBEBE',
-				    borderBottomWidth: 1,
-				    marginHorizontal : '7%'
-				  }}
-				/>
-	            <Right style={styles.totalPrice}>
-		                <Text style={styles.textTotalPrice}>
-		                	<Text> Total bayar </Text>
-		                	<Text style={{color:'coral'}}> Rp 180.000 </Text>
-		                </Text> 
-	            </Right>
-	         </Card>
-        </Content>
-    </Container>
-    );
-  }
+class Activity extends Component {
+    constructor() {
+        super()
+        this.state = {
+            refresh: false,
+            isLoading: false,
+
+        };
+    };
+    _onRefresh = () => {
+        this.setState({
+            refresh: true
+        })
+        AsyncStorage.getItem('id_user', (error, result) => {
+            if (result) {
+                this.props.dispatch(getActivity(result))
+            }
+        })
+    }
+    componentDidMount = () => {
+        AsyncStorage.getItem('id_user', (error, result) => {
+            if (result) {
+                this.props.dispatch(getActivity(result))
+            }
+        })
+    }
+    render() {
+        console.log('this.props.Activity.data')
+        console.log(this.props.Activity)
+        return (
+            <View style={{ marginBottom: 100 }}>
+                {
+                    this.props.Activity.isLoading ?
+                        <ActivityIndicator size='large' color='#FF92A9' /> :
+                        this.props.Activity.isError ?
+                            <Text style={{ fontSize: 15, justifyContent: 'center', alignItems: 'center', }}>data not found</Text> :
+                            <FlatList
+                                data={this.props.Activity.data}
+                                numColumns={1}
+                                keyExtractor={(item) => item.id_checkout.toString()}
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={this.props.Activity.isLoading}
+                                        onRefresh={this._onRefresh}
+                                    />
+                                }
+                                renderItem={({ item, index }) => {
+                                    return (
+                                        <CardActivity item={item} index={index} navigation={this.props.navigation} />
+                                    )
+                                }}
+                            />
+                }
+            </View>
+
+        )
+    }
 }
 
-const styles = StyleSheet.create({
-	seller:{
-		marginBottom: 10,
-	    marginTop:0,	
-	},
-	imageThumbnail:{
-		width:25, 
-		height:25
-	},
-	textDone:{
-		textAlign:'right', 
-		alignSelf: 'stretch',
-		paddingHorizontal:'5%',
-		color:'red'
-	},
-    textCheckout : {
-    	paddingHorizontal:10,
-    	// paddingVertical:10
-    },
-    textProduct:{
-    	fontSize: 17,
-    	color:'black'
-    },
-    qtyParent:{
-    	backgroundColor:'skyblue'
-    },
-    qty:{
-    	paddingVertical:5,
-    	textAlign:'right',
-    	fontSize:11
-    },
-    totalPrice:{
-    	textAlign: 'right', 
-    	alignSelf: 'stretch',
-    	paddingBottom:15,
-    	paddingTop:7,
-    	paddingLeft:0,
-    	paddingRight:'7%',
-    },
-    textTotalPrice:{
-    	// fontSize:12,
-    	fontWeight:'bold'
+const mapStateToProps = state => {
+    return {
+        Activity: state.Activity,
     }
-})
+}
+
+
+export default connect(mapStateToProps)(Activity);
