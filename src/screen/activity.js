@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { Text, View, FlatList, TouchableOpacity, Image, StyleSheet, TouchableWithoutFeedback, Alert, AsyncStorage, RefreshControl, ActivityIndicator } from 'react-native'
-import HeaderBack from '../components/headerBack'
-import Icon from 'react-native-vector-icons/dist/AntDesign'
-import Entypo from 'react-native-vector-icons/dist/Entypo'
-
 import { connect } from 'react-redux';
 import { getActivity } from '../public/action/activity';
 import CardActivity from '../components/cardActivity'
@@ -38,7 +34,7 @@ class Activity extends Component {
         console.log('this.props.Activity.data')
         console.log(this.props.Activity)
         return (
-            <View style={{ marginBottom: 100 }}>
+            <View style={{ marginBottom: 100 ,flex :1,height :300}}>
                 {
                     this.props.Activity.isLoading ?
                         <ActivityIndicator size='large' color='#FF92A9' /> :
