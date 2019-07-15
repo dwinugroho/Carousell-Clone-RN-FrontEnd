@@ -6,7 +6,9 @@ import {
     TouchableOpacity, 
     Image, 
     StyleSheet, 
-    Button 
+    Button,
+    ActivityIndicator,
+    RefreshControl 
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -17,7 +19,22 @@ import { getProduct } from '../public/action/product'
 
 
 class FlatListItem extends Component {
-
+    constructor() {
+        super()
+        this.state = {
+            refresh : false,
+        };
+    };
+    _onRefresh =() => {
+        this.setState({
+            refresh : true
+        })
+    //     AsyncStorage.getItem('id_user', (error, result) => {
+    //         if (result) {
+    //             this.props.dispatch(getproduct(result))
+    //         }
+    // })
+}
     componentWillMount() {
 
         const   image = JSON.parse(this.props.item.image)
@@ -132,16 +149,28 @@ class Card extends Component {
 
         return (
             <View>
+                {
+                    this.props.product.isLoading ?
+                        <ActivityIndicator size='large' color='#FF92A9' /> :
+                        this.props.product.isError ?
+                        <Text style={{fontSize:15,justifyContent:'center',alignItems: 'center',}}>data not found</Text> :
                 <FlatList
                     data={this.props.product.product}
                     numColumns={2}
                     keyExtractor={(item) => item.id_product.toString()}
+                    refreshControl={
+                        <RefreshControl
+                          refreshing={this.props.product.isLoading}
+                          onRefresh={this._onRefresh}
+                        />
+                    }
                     renderItem={({ item, index }) => {
                         return (
                             <FlatListItem navigation={this.props.navigation} item={item} index={index} />
                         )
                     }}
                 />
+                }
             </View>
         )
     }

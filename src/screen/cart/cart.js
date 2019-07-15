@@ -7,7 +7,8 @@ import {
     FlatList,
     StyleSheet,
     TouchableOpacity,
-    ScrollView,
+    ScrollView,ActivityIndicator,RefreshControl
+   
 } from 'react-native'
 
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
@@ -29,10 +30,24 @@ class Cart extends Component {
         super(props);
         this.state = {
           selected: "",
+          refresh : false,
+          isLoading : false,
           address: 'Jl Kaliurang Km 5, Jalan Pogung Baru No.9, Pogung Kidul, Sinduadi, Mlati, Sleman Regency, Special Region of Yogyakarta 55284'
         };
       }
-    onValueChange(value: string) {
+    _onRefresh =() => {
+        this.setState({
+            refresh : true
+        })
+        AsyncStorage.getItem('id_user', (error, result) => {
+            if (result) {
+                this.props.dispatch(getCart(result))
+            }
+    })
+}
+
+
+    onValueChange(value) {
         this.setState({
           selected: value
         });
@@ -97,10 +112,21 @@ class Cart extends Component {
         return (
             <View style={{marginBottom:60}}>
                 <HeaderBack title="Cart" navigation={this.props.navigation} />
+                {
+                    this.props.cart.isLoading ?
+                        <ActivityIndicator size='large' color='#FF92A9' /> :
+                        this.props.cart.isError ?
+                        <Text style={{fontSize:15,justifyContent:'center',alignItems: 'center',}}>data not found</Text> :
                 <ScrollView>
                     <FlatList 
                         data={this.props.cart.data}
                         keyExtractor={(item) => {item.id_cart.toString()}}
+                        refreshControl={
+                            <RefreshControl
+                              refreshing={this.props.cart.isLoading}
+                              onRefresh={this._onRefresh}
+                            />
+                        }
                         renderItem={({item, index}) => {
                             return(
                                 <CardCart key={item.id_cart} item={item} index={index} />
@@ -127,7 +153,9 @@ class Cart extends Component {
                         </Text>
                         <Text style={{fontSize: 25, fontWeight: 'bold', marginLeft: 10}}>
                             Rp. {
+
                                 this.props.cart.data === undefined ? 0 : (this.props.cart.data.length === 0 ? 0 : this.countPrice())
+
                             }
                         </Text>
                     </View>
@@ -158,6 +186,7 @@ class Cart extends Component {
                         </Button>
                     </View>
                 </ScrollView>
+                }
             </View>
         )
     }
