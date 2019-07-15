@@ -108,6 +108,7 @@ class Cart extends Component {
 
 
     render() {
+        console.warn(this.props.cart.data)
         return (
             <View style={{marginBottom:60}}>
                 <HeaderBack title="Cart" navigation={this.props.navigation} />
@@ -152,7 +153,9 @@ class Cart extends Component {
                         </Text>
                         <Text style={{fontSize: 25, fontWeight: 'bold', marginLeft: 10}}>
                             Rp. {
-                                this.props.cart.data.length == 0 ? 0 : this.countPrice()
+
+                                this.props.cart.data === undefined ? 0 : (this.props.cart.data.length === 0 ? 0 : this.countPrice())
+
                             }
                         </Text>
                     </View>
@@ -166,10 +169,11 @@ class Cart extends Component {
                         >
                           <Picker.Item label="---- Pilih Metode Pembayaran ----" value="" />
                           <Picker.Item label="Transfer BRI" value="1" />
-                          <Picker.Item label="Transfer BNI" value="2" />
-                          <Picker.Item label="Transfer BCA" value="3" />
-                          <Picker.Item label="Indomart" value="4" />
-                          <Picker.Item label="Alfamart" value="5" />
+                          <Picker.Item label="Transfer BCA" value="2" />
+                          <Picker.Item label="Transfer BNI" value="3" />
+                          <Picker.Item label="Transfer Mandiri" value="4" />
+                          <Picker.Item label="Indomart" value="5" />
+                          <Picker.Item label="Alfamart" value="6" />
                         </Picker>
                     </View>
                     <View>
