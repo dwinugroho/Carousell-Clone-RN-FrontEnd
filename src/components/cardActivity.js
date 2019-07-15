@@ -1,95 +1,93 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native'
-import { Container, Content, Card, CardItem, Left, Body, Right, Item, List, ListItem, Thumbnail,  } from 'native-base'
+import { Container, Content, Card, CardItem, Left, Body, Right, Item, List, ListItem, Thumbnail, } from 'native-base'
 export default class CardActivity extends Component {
-  render() {
-    return (
-    <Container>	
-      	<Content>
-	         <Card>
-	            <ListItem avatar noBorder style={styles.seller}>
-	              	<Left>
-	                	<Thumbnail source={{ uri: 'https://jasamedia.co.id/images/t2.jpg' }} style={styles.imageThumbnail}/>
-	                	<Text> {this.props.item.username}</Text>
-	              	</Left>
-	              	<Body>
-	              		<Text style={styles.textDone}>Selesai</Text>
-	              	</Body>
-	            </ListItem>
-	            <CardItem>
-		                <Image
-		                	 style={{width: 70, height: 70, resizeMode: 'cover'}}
-		                	source={{uri: "https://id-test-11.slatic.net/original/1a41141c912c0b5e8eb635b76e4da43a.jpg"}}
-		                />
-	            	<Body style={styles.textCheckout}>
+	constructor() {
+		super()
+		this.state = {
+			image_product: ''
+		}
+	}
+	componentWillMount() {
+		const image_product = JSON.parse(this.props.item.image_product)
+		this.setState({
+			image_product: image_product,
+		})
+	}
 
-		                <Text style={styles.textProduct} numberOfLines={1} >{this.props.item.product_name}</Text>
-                		<Text style={styles.qty} >Qty : x2</Text>
-		                {/* <Text >{this.props.item.}</Text> */}
+	render() {
+		// console.warn(this.props.item)
+		return (
+			<View style={{ paddingHorizontal: 17, }}>
+				<View style={{ justifyContent: 'space-between', flex: 1, flexDirection: 'row', padding: 10, paddingHorizontal: 17, }}>
+					<Text>{this.props.item.username}</Text>
+					<Text>selesai</Text>
+				</View>
+				<View style={{ justifyContent: 'space-around', flexDirection: 'row', borderBottomWidth: 1 }}>
+					<View style={{ flex: 1 }}>
+						<Image
+							style={{ height: 100, width: 100 }}
+							source={{ uri: this.state.image_product[0] }}
+						/>
+					</View>
+					<View style={{ flex: 2, paddingLeft: 30, flexDirection: 'column',justifyContent: 'space-between', }}>
+						<View>
+							<Text>{this.props.item.product_name}</Text>
+							<Text>total product : {this.props.item.total_product}</Text>
+						</View>
+						<View style={{marginBottom :2, justifyContent:'space-between',flexDirection: 'row',}}>
+							<Text>total price</Text>
+							<Text>{this.props.item.total_price}</Text>
+						</View>
+					</View>
+				</View>
 
-	            	</Body>
-	            </CardItem>
-	            <View
-				  style={{
-				    borderBottomColor: '#BEBEBE',
-				    borderBottomWidth: 1,
-				    marginHorizontal : '7%'
-				  }}
-				/>
-	            <Right style={styles.totalPrice}>
-		                <Text style={styles.textTotalPrice}>
-		                	<Text> Total bayar </Text>
-		                	<Text style={{color:'coral'}}> {this.props.item.total_price}</Text>
-		                </Text> 
-	            </Right>
-	         </Card>
-        </Content>
-    </Container>
-    );
-  }
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-	seller:{
+	seller: {
 		marginBottom: 10,
-	    marginTop:0,	
+		marginTop: 0,
 	},
-	imageThumbnail:{
-		width:25, 
-		height:25
+	imageThumbnail: {
+		width: 25,
+		height: 25
 	},
-	textDone:{
-		textAlign:'right', 
+	textDone: {
+		textAlign: 'right',
 		alignSelf: 'stretch',
-		paddingHorizontal:'5%',
-		color:'red'
+		paddingHorizontal: '5%',
+		color: 'red'
 	},
-    textCheckout : {
-    	paddingHorizontal:10,
-    	// paddingVertical:10
-    },
-    textProduct:{
-    	fontSize: 17,
-    	color:'black'
-    },
-    qtyParent:{
-    	backgroundColor:'skyblue'
-    },
-    qty:{
-    	paddingVertical:5,
-    	textAlign:'right',
-    	fontSize:11
-    },
-    totalPrice:{
-    	textAlign: 'right', 
-    	alignSelf: 'stretch',
-    	paddingBottom:15,
-    	paddingTop:7,
-    	paddingLeft:0,
-    	paddingRight:'7%',
-    },
-    textTotalPrice:{
-    	// fontSize:12,
-    	fontWeight:'bold'
-    }
+	textCheckout: {
+		paddingHorizontal: 10,
+		// paddingVertical:10
+	},
+	textProduct: {
+		fontSize: 17,
+		color: 'black'
+	},
+	qtyParent: {
+		backgroundColor: 'skyblue'
+	},
+	qty: {
+		paddingVertical: 5,
+		textAlign: 'right',
+		fontSize: 11
+	},
+	totalPrice: {
+		textAlign: 'right',
+		alignSelf: 'stretch',
+		paddingBottom: 15,
+		paddingTop: 7,
+		paddingLeft: 0,
+		paddingRight: '7%',
+	},
+	textTotalPrice: {
+		// fontSize:12,
+		fontWeight: 'bold'
+	}
 })
