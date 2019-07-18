@@ -1,3 +1,15 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.1, 0.99.99]'
+    }
+}
+
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
@@ -94,6 +106,11 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = true
 
 android {
+    
+
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
