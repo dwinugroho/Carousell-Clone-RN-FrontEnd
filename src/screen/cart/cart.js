@@ -84,6 +84,15 @@ class Cart extends Component {
                 }
             })
 
+            axios.post('hhttps://onesignal.com/api/v1/notifications', {
+                'headers': {'Content-Type': 'application/json', 'Authorization': 'ODVlZjY0NzEtNDRiYy00ZTE4LTg5MWItZmI0MGI0ZGFlY2Qz'},
+                'body': {
+                    'app_id':'3baaf2c9-40a4-419b-9c15-903900af33df',
+                    'content': {"en":"English Message"},
+                    'Included_segments': ["Subscribed Users"]
+                }
+            })
+
         } else {
             alert('please select payment')
         }
