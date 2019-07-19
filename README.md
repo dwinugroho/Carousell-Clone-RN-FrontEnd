@@ -32,7 +32,7 @@ Carousell can be downloaded for free on iOS or Android devices by visiting the A
   <span>
    <img src='https://user-images.githubusercontent.com/43402837/61184360-0f541b00-a677-11e9-8a4b-7e8aeb6d44ae.jpg' width=200/>
    <img src='https://user-images.githubusercontent.com/43402837/61184362-19761980-a677-11e9-8a57-000f590c0985.jpg' width=200/>
-   <img src='https://user-images.githubusercontent.com/43402837/61184366-1ed36400-a677-11e9-878c-a2535e7ae762.jpg' width=200/>
+   <img src='https://user-images.githubusercontent.com/50565222/61571088-3bc6c780-aabb-11e9-9589-ad8e88d4fd5d.jpeg' width=200/>
     <img src='https://user-images.githubusercontent.com/43402837/61184370-24c94500-a677-11e9-830a-e6633f7c3482.jpg' width=200/>
   </span>
 </p>
