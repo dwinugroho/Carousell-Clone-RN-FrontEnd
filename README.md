@@ -37,6 +37,17 @@ Carousell can be downloaded for free on iOS or Android devices by visiting the A
   </span>
 </p>
 
+# Demo
+
+If you want to watch demo application, <a href="https://drive.google.com/file/d/1aVaO_G_ih_aZUmPg-KqYjsUap-JmseRR/view?usp=sharing">Click Here !</a>
+
+# Related Project
+
+<a href="https://github.com/frendifdp/Clone-Carousell-Backend">Carousell Clone RESTful API</a>
+
+# Trello
+You can see the Trello for this project [`here`](https://trello.com/b/IPYjwLBL/cloning-carousell-arkademy)
+
 ## Contributors
 <center>
   <table>
