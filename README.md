@@ -7,7 +7,7 @@
 </p>
 
 ## RELATED PROJECT
-express js (https://github.com/DanyAdhiPrabowo/Carousell-Clone-Backend.git)
+express js (https://github.com/frendifdp/Clone-Carousell-Backend.git)
 
 ## Introduction
 Carousell is a mobile marketplace application that helps us to sell our things as simple as taking photos. Carousell has a mission to make online shopping accessible to everyone while creating a safe, friendly and mutually supportive community!
