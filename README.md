@@ -70,8 +70,8 @@ You can see the Trello for this project [`here`](https://trello.com/b/IPYjwLBL/c
         </a>
       </td>
       <td align="center">
-        <a href="https://github.com/DanyAdhiPrabowo">
-          <img width="100" src="https://avatars3.githubusercontent.com/u/35985089?s=400&v=4" alt="Dany Adhi Prabowo"><br/>
+        <a href="https://github.com/DanyAdhi">
+          <img width="100" src="https://avatars1.githubusercontent.com/u/45444857?s=400&v=4" alt="Dany Adhi Prabowo"><br/>
           <sub><b>Dany Adhi Prabowo</b></sub>
         </a>
       </td>
